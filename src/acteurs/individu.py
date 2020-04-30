@@ -50,7 +50,7 @@ class Individu:
 
 		if self.statut == 'g' or self.statut == 'a':
 			choix_pays['options basiques'].append(['AJOUTER UN PAYS', 'A'])
-			choix_pays['actions'].append(lambda var : self.ajout_pays(contenu, var))
+			choix_pays['actions'].append(lambda var : self.ajout_pays(contenu))
 		if self.statut == 'a':
 			choix_pays['options basiques'].append(['SUPPRIMER UN PAYS', 'S'])
 			choix_pays['actions'].append(lambda var : self.supprimer_pays(contenu, var))
@@ -127,7 +127,7 @@ class Individu:
 	def ajout_texte(self, contenu, contenu_precedent):
 		raise NotImplemented()
 
-	def ajout_pays(self, contenu, contenu_precedent):
+	def ajout_pays(self, contenu):
 		raise NotImplemented()
 
 	def supprimer_section(self, contenu, contenu_precedent):
