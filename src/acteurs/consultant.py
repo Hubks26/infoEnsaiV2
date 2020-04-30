@@ -8,9 +8,9 @@ class Consultant(Individu):
 	
 	def __init__(self):
 		super().__init__()
-		self.statut = 'consultant'
+		self.statut = 'c'
 
-	def correction(self, contenu, chemin):
+	def correction(self, contenu, num_pays, donnees, chemin):
 		# Cette méthode permet de proposer une correction.
 		# Elle prend en argument un contenu et ne renvoie rien.
 		# L'utilisateur n'a qu'à entrer la proposition de 
@@ -26,7 +26,8 @@ class Consultant(Individu):
 					if len(txt_correction) > 1:
 						break
 					print('\nVotre texte doit contenir au moins 1 caractère\n')
-				prop_correction = Proposition_Correction(txt_correction, chemin)
+					
+				prop_correction = Proposition_Correction(txt_correction, num_pays, chemin)
 				gestionnaire = Gestionnaire()
 				gestionnaire.save_elm(prop_correction)
 

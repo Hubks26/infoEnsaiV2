@@ -5,7 +5,7 @@ from gestion.elements_fichiers.section import Section
 from gestion.elements_fichiers.pays import Pays
 
 class Individu:
-	# Classe mère des classes Consultant et Contributeur.
+	# Classe mère des classes Consultant.
 	
 	def __init__(self):
 		self.statut = None
@@ -23,9 +23,10 @@ class Individu:
 			return Menu_Ouvert(contenu)
 	
 	def afficher_pays(self, contenu):
-		self.contenu_initial = contenu
-		data_base = Data_Base()
-		donnees = data_base.donnees
+		if self.contenu_initial == {}:
+			self.contenu_initial = contenu
+			
+		donnees = Data_Base().donnees
 		nb_pays = len(donnees)
 		
 		choix_pays = {}
@@ -44,24 +45,24 @@ class Individu:
 		liste_des_nums = [pays[1] for pays in liste_des_pays]
 		
 		choix_pays['options'] = liste_des_noms
+		choix_pays['options basiques'] = []
 		choix_pays['actions'] = [lambda var, num=num : self._afficher_section(Section(num, donnees), contenu) for num in liste_des_nums]
 
-		if self.statut == 'géographe' or self.statut == 'administrateur':
-			choix_pays['options'].append('AJOUTER UN PAYS')
+		if self.statut == 'g' or self.statut == 'a':
+			choix_pays['options basiques'].append(['AJOUTER UN PAYS', 'A'])
 			choix_pays['actions'].append(lambda var : self.ajout_pays(contenu, var))
-		if self.statut == 'administrateur':
-			choix_pays['options'].append('SUPPRIMER UN PAYS')
+		if self.statut == 'a':
+			choix_pays['options basiques'].append(['SUPPRIMER UN PAYS', 'S'])
 			choix_pays['actions'].append(lambda var : self.supprimer_pays(contenu, var))
-		choix_pays['options'].append("RETOUR AU MENU DE L'ACTEUR")
+		choix_pays['options basiques'].append(["RETOUR AU MENU DE L'ACTEUR", 'R'])
 		choix_pays['actions'].append(lambda var : Menu_Ouvert(self.contenu_initial))
-		choix_pays['options'].append('QUITTER')
-		choix_pays['actions'].append(Individu().quitter)
+		choix_pays['options basiques'].append(['QUITTER', 'Q'])
+		choix_pays['actions'].append(self.quitter)
 		
 		return Menu_Ouvert(choix_pays)
 	
 	def _afficher_section(self, section, contenu): # En faire une méthode privée ?
-		data_base = Data_Base()
-		donnees = data_base.donnees
+		donnees = Data_Base().donnees
 		num_pays = section.num_pays
 		chemin = section.chemin
 		
@@ -75,9 +76,9 @@ class Individu:
 			print('\n{} :\n'.format(chemin_a_afficher))
 			print(section.contenu['text'])
 
-			self.correction(choix_section, chemin)
+			self.correction(choix_section, num_pays, donnees, chemin)
 			
-			return Menu_Ouvert(contenu)
+			return self._afficher_section(Section(num_pays, donnees, chemin[:-1]), contenu)
 		
 		sous_sections = section.get_noms_sous_sections()
 		
@@ -88,30 +89,32 @@ class Individu:
 			
 		choix_section['individu'] = contenu['individu']
 		choix_section['options'] = sous_sections
+		choix_section['options basiques'] = []
 		choix_section['actions'] = []
 		
 		for partie in sous_sections:
 			nouveau_chemin = chemin + [partie]
 			choix_section['actions'].append((lambda contenu, nouveau_chemin=nouveau_chemin : self._afficher_section(Section(num_pays, donnees, nouveau_chemin), contenu)))
 			
-		if self.statut == 'géographe' or self.statut == 'administrateur':
+		if self.statut == 'g' or self.statut == 'a':
 			if len(sous_sections) == 0:
-				choix_section['options'].append('AJOUTER UN TEXTE')
+				choix_section['options basiques'].append(['AJOUTER UN TEXTE', 'AT'])
 				choix_section['actions'].append(lambda var : self.ajout_texte(var, contenu))
-			choix_section['options'].append('AJOUTER UNE SECTION')
+			choix_section['options basiques'].append(['AJOUTER UNE SECTION', 'AS'])
 			choix_section['actions'].append(lambda var : self.ajout_section(var, contenu))
-		if self.statut == 'administrateur':
-			choix_section['options'].append('SUPPRIMER UNE SECTION')
+		if self.statut == 'a' and len(sous_sections) != 0:
+			choix_section['options basiques'].append(['SUPPRIMER UNE SECTION', 'S'])
 			choix_section['actions'].append(lambda var : self.supprimer_section(var, contenu))
-		choix_section['options'].append('RETOUR')
+				
+		choix_section['options basiques'].append(['RETOUR', 'R'])
 		if len(chemin) == 0:
 			choix_section['actions'].append(lambda var : self.afficher_pays(contenu))
 		else:
 			choix_section['actions'].append(lambda var : self._afficher_section(Section(num_pays, donnees, chemin[:-1]), contenu))
-		choix_section['options'].append("RETOUR AU MENU DE L'ACTEUR")
-		choix_section['actions'].append(lambda var : Menu_Ouvert(self.contenu_initial))
-		choix_section['options'].append('QUITTER')
-		choix_section['actions'].append(Individu().quitter)
+		choix_section['options basiques'].append(["RETOUR AU MENU DE L'ACTEUR", 'RMA'])
+		choix_section['actions'].append(lambda contenu : Menu_Ouvert(self.contenu_initial))
+		choix_section['options basiques'].append(['QUITTER', 'Q'])
+		choix_section['actions'].append(self.quitter)
 		
 		return Menu_Ouvert(choix_section)
 	

@@ -5,10 +5,13 @@ class Lecteur:
 		pass
 	
 	def read(self, chemin_du_fichier):
-		with open(chemin_du_fichier, 'rb') as fichier:
-			unpickler = pickle.Unpickler(fichier)
-			contenu = unpickler.load()
-			
+		try:
+			with open(chemin_du_fichier, 'rb') as fichier:
+				unpickler = pickle.Unpickler(fichier)
+				contenu = unpickler.load()
+		except FileNotFoundError:
+			contenu = []
+			self.write(chemin_du_fichier, contenu)
 		return contenu
 	
 	def write(self, chemin_du_fichier, contenu):
