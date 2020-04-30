@@ -22,7 +22,7 @@ class Gestionnaire(Lecteur):
 		if len(nouvelle_liste_elm) == len(liste_elm):
 			input('\nEchec de la suppression. Aucun élément ne correspond à votre entrée.\nAppuyez sur entrer pour continuer.\n')
 		else :
-			confirmation = input('\nConfirmation de la suppression du compte (O/N) ?\n> ')
+			confirmation = input('\nConfirmation de la suppression (O/N) ?\n> ')
 			if confirmation in ['o', 'O']:
 				self.write(chemin, nouvelle_liste_elm)
 				input('\nLa suppression a bien été effectuée\nAppuyez sur entrer pour continuer')

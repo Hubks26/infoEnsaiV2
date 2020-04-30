@@ -15,7 +15,7 @@ class Admin(Geographe, Data_Scientist):
 			choix_gestion['pseudo'] = contenu['pseudo']
 			choix_gestion['individu'] = contenu['individu']
 			choix_gestion['question'] = 'Que voulez vous faire ?'
-			choix_gestion['options'] = ['Créer un compte', 'Supprimer un compte', 'Voir la liste des comtpes']
+			choix_gestion['options'] = ['Créer un compte', 'Supprimer un compte', 'Voir la liste des comptes']
 			choix_gestion['options basiques'] = [['RETOUR', 'R'], ['QUITTER', 'Q']]
 			choix_gestion['actions'] = [
 				self._creer_compte,
