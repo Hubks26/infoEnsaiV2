@@ -46,7 +46,7 @@ class Individu:
 		
 		choix_pays['options'] = liste_des_noms
 		choix_pays['options basiques'] = []
-		choix_pays['actions'] = [lambda var, num=num : self._afficher_section(Section(num, donnees), contenu) for num in liste_des_nums]
+		choix_pays['actions'] = [lambda var, num=num : self.afficher_section(Section(num, donnees), contenu) for num in liste_des_nums]
 
 		if self.statut == 'g' or self.statut == 'a':
 			choix_pays['options basiques'].append(['AJOUTER UN PAYS', 'A'])
@@ -61,7 +61,7 @@ class Individu:
 		
 		return Menu_Ouvert(choix_pays)
 	
-	def _afficher_section(self, section, contenu): # En faire une méthode privée ?
+	def afficher_section(self, section, contenu): # En faire une méthode privée ?
 		donnees = Data_Base().donnees
 		num_pays = section.num_pays
 		chemin = section.chemin
@@ -76,9 +76,9 @@ class Individu:
 			print('\n{} :\n'.format(chemin_a_afficher))
 			print(section.contenu['text'])
 
-			self.correction(choix_section, num_pays, donnees, chemin)
+			self.correction(choix_section, section)
 			
-			return self._afficher_section(Section(num_pays, donnees, chemin[:-1]), contenu)
+			return self.afficher_section(Section(num_pays, donnees, chemin[:-1]), contenu)
 		
 		sous_sections = section.get_noms_sous_sections()
 		
@@ -94,14 +94,14 @@ class Individu:
 		
 		for partie in sous_sections:
 			nouveau_chemin = chemin + [partie]
-			choix_section['actions'].append((lambda contenu, nouveau_chemin=nouveau_chemin : self._afficher_section(Section(num_pays, donnees, nouveau_chemin), contenu)))
+			choix_section['actions'].append((lambda contenu, nouveau_chemin=nouveau_chemin : self.afficher_section(Section(num_pays, donnees, nouveau_chemin), contenu)))
 			
 		if self.statut == 'g' or self.statut == 'a':
 			if len(sous_sections) == 0:
 				choix_section['options basiques'].append(['AJOUTER UN TEXTE', 'AT'])
 				choix_section['actions'].append(lambda var : self.ajout_texte(var, contenu))
 			choix_section['options basiques'].append(['AJOUTER UNE SECTION', 'AS'])
-			choix_section['actions'].append(lambda var : self.ajout_section(var, contenu))
+			choix_section['actions'].append(lambda var : self.ajout_section(contenu, section))
 		if self.statut == 'a' and len(sous_sections) != 0:
 			choix_section['options basiques'].append(['SUPPRIMER UNE SECTION', 'S'])
 			choix_section['actions'].append(lambda var : self.supprimer_section(var, contenu))
@@ -110,7 +110,7 @@ class Individu:
 		if len(chemin) == 0:
 			choix_section['actions'].append(lambda var : self.afficher_pays(contenu))
 		else:
-			choix_section['actions'].append(lambda var : self._afficher_section(Section(num_pays, donnees, chemin[:-1]), contenu))
+			choix_section['actions'].append(lambda var : self.afficher_section(Section(num_pays, donnees, chemin[:-1]), contenu))
 		choix_section['options basiques'].append(["RETOUR AU MENU DE L'ACTEUR", 'RMA'])
 		choix_section['actions'].append(lambda contenu : Menu_Ouvert(self.contenu_initial))
 		choix_section['options basiques'].append(['QUITTER', 'Q'])
@@ -118,10 +118,10 @@ class Individu:
 		
 		return Menu_Ouvert(choix_section)
 	
-	def correction(self, contenu):
+	def correction(self, contenu, section):
 		raise NotImplemented()
 		
-	def ajout_section(self, contenu, contenu_precedent):
+	def ajout_section(self, contenu, section):
 		raise NotImplemented()
 	
 	def ajout_texte(self, contenu, contenu_precedent):
