@@ -99,7 +99,7 @@ class Individu:
 		if self.statut == 'g' or self.statut == 'a':
 			if len(sous_sections) == 0:
 				choix_section['options basiques'].append(['AJOUTER UN TEXTE', 'AT'])
-				choix_section['actions'].append(lambda var : self.ajout_texte(var, contenu))
+				choix_section['actions'].append(lambda var : self.ajout_texte(contenu, section))
 			choix_section['options basiques'].append(['AJOUTER UNE SECTION', 'AS'])
 			choix_section['actions'].append(lambda var : self.ajout_section(contenu, section))
 		if self.statut == 'a' and len(sous_sections) != 0:
@@ -124,7 +124,7 @@ class Individu:
 	def ajout_section(self, contenu, section):
 		raise NotImplemented()
 	
-	def ajout_texte(self, contenu, contenu_precedent):
+	def ajout_texte(self, contenu, section):
 		raise NotImplemented()
 
 	def ajout_pays(self, contenu):

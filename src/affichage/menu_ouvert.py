@@ -1,7 +1,7 @@
 from affichage.menu import Menu
 
 class Menu_Ouvert(Menu): 
-	# Le menu fermé hérite de la classe Menu.
+	# Le menu ouvert hérite de la classe Menu.
 
 	def __init__(self, contenu):
 		super().__init__(contenu)
