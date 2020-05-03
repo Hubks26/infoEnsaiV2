@@ -1,3 +1,4 @@
+from affichage.menu_ouvert import Menu_Ouvert
 from acteurs.contributeur import Contributeur
 from gestion.elements_fichiers.data_base import Data_Base
 from gestion.elements_fichiers.section import Section
@@ -29,7 +30,7 @@ class Geographe(Contributeur):
 					
 					confirmation = input('\nConfirmation de la modification #Cela écrasera le texte initial# (O/N) ?\n> ')
 					if confirmation in ["o","O"]:
-						gestionnaire.update(section_de_texte)
+						gestionnaire.update(section_de_texte.donnees)
 						input('\nVotre modification a bien été enregistrée.\nAppuyez sur entrer pour continuer.')
 					else :
 						input("\nVotre tentative de modification n'a pas abouti.\nAppuyez sur entrer pour continuer.")
@@ -49,7 +50,7 @@ class Geographe(Contributeur):
 			confirmation = input("\nConfirmation de l'ajout du texte (O/N) ?\n> ")
 			if confirmation in ['o', 'O']:
 				section.contenu['text'] = texte
-				gestionnaire.update(section)
+				gestionnaire.update(section.donnees)
 				input('\nLe texte a bien été ajouté.\nAppuyez sur entrer pour continuer.')
 				return self.afficher_section(section_mere, contenu)
 			else :
@@ -78,7 +79,7 @@ class Geographe(Contributeur):
 			confirmation = input('\nConfirmation de la création de la section (O/N) ?\n> ')
 			if confirmation in ['o', 'O']:
 				section.contenu[nom_section] = {}
-				gestionnaire.update(section)
+				gestionnaire.update(section.donnees)
 				input('\nLa nouvelle section a été ajoutée.\nAppuyez sur entrer pour continuer.')
 			else :
 				input("\nVotre tentative d'ajout de section n'a pas abouti.\nAppuyez sur entrer pour continuer.")
@@ -110,7 +111,81 @@ class Geographe(Contributeur):
 			nouveau_pays.set_name(nom_pays)
 			nouveau_pays.set_infos_de_base()
 			
-			gestionnaire.update(nouveau_pays)
+			gestionnaire.update(nouveau_pays.donnees)
 			input("\nLe pays a bien été ajouté.\nAppuyez sur entrer pour continuer.")
 
 		return self.afficher_pays(contenu)
+	
+	def gestion_corrections(self, contenu):
+		gestionnaire = Gestionnaire()
+		liste_des_corrections = gestionnaire.read('../media/files/props_corrections')
+		
+		if self.verification_connexion():
+			choix_prop = {}
+			choix_prop['pseudo'] = contenu['pseudo']
+			choix_prop['individu'] = contenu['individu']
+			
+			if len(liste_des_corrections) == 0:
+				choix_prop['question'] = "Il n'y a pas de propositions à examiner."
+			else : 
+				choix_prop["question"] = "Choisissez une proposition de correction.\nLe chemin indiqué est celui de l'emplacement du texte susceptible d'être modifié."
+				
+			choix_prop['options basiques'] = [['RETOUR', 'R'], ['QUITTER', 'Q']]
+			choix_prop['options'] = liste_des_corrections
+			
+			choix_prop['actions'] = [lambda var, prop_cor = prop_cor : self._decider_correction(contenu, prop_cor) for prop_cor in liste_des_corrections]
+			choix_prop['actions'].append(lambda var : Menu_Ouvert(contenu))
+			choix_prop['actions'].append(self.quitter)
+
+			return Menu_Ouvert(choix_prop)
+		else:
+			return Menu_Ouvert(contenu)
+		
+	def _decider_correction(self, contenu, prop_cor):
+		donnees = Data_Base().donnees
+		gestionnaire = Gestionnaire()
+		try :
+			section_du_texte = Section(prop_cor.num_pays, donnees, prop_cor.chemin_prop)
+		except :
+			input('\nIl semble que la donnée initiale a été supprimée. Cette proposition va alors être supprimée.\nAppuyez sur entrer pour continuer')
+			gestionnaire.suppr_elm(prop_cor)
+			return self.gestion_corrections(contenu)	
+		
+		print("\nTexte actuel :\n")
+		print(section_du_texte.contenu["text"] + "\n")
+		print("Proposition de correction :\n")
+		print(prop_cor.txt_prop + "\n")
+		
+		while True:
+			validation = input("Voulez-vous valider cette proposition de correction (V : valider / R : refuser / P : aucune action) ?\n> ")
+			if validation in ["v","V","r","R","p","P"]:
+				break
+			else :
+				input("\nVotre réponse doit être V, R ou P.\nAppyez sur entrer pour continuer.\n")
+				
+		if validation in ['v', 'V']:
+			self._valider_prop(prop_cor, section_du_texte)
+		if validation in ['r', 'R']:
+			self._refuser_prop(prop_cor)
+			
+		return self.gestion_corrections(contenu)
+			
+	def _refuser_prop(self, prop_cor):
+		gestionnaire = Gestionnaire()
+		confirmation = input("\nConfirmation du refus de la proposition (O/N) ? #Cela supprimera la proposition#\n> ")
+		if confirmation in ['o', 'O']:
+			gestionnaire.suppr_elm(prop_cor)
+			input("\nLa proposition a été supprimée !\nAppuyez sur entrer pour continuer.")
+		else :
+			input("\nVotre tentative de refus n'a pas abouti.\nAppuyez sur entrer pour continuer.")
+	
+	def _valider_prop(self, prop_cor, section_du_texte):
+		gestionnaire = Gestionnaire()
+		confirmation = input("\nConfirmation de la validation du nouveau texte (O/N) ? #Cela supprimera l'ancien texte#\n> ")
+		if confirmation in ['o', 'O']:
+			section_du_texte.contenu['text'] = prop_cor.txt_prop
+			gestionnaire.update(section_du_texte.donnees)
+			gestionnaire.suppr_elm(prop_cor)
+			input("\nLe texte a bien été modifié !\nAppuyez sur entrer pour continuer.")
+		else :
+			input("\nVotre tentative de validation n'a pas abouti.\nAppuyez sur entrer pour continuer.")

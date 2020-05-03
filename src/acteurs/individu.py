@@ -53,7 +53,7 @@ class Individu:
 			choix_pays['actions'].append(lambda var : self.ajout_pays(contenu))
 		if self.statut == 'a':
 			choix_pays['options basiques'].append(['SUPPRIMER UN PAYS', 'S'])
-			choix_pays['actions'].append(lambda var : self.supprimer_pays(contenu, var))
+			choix_pays['actions'].append(lambda var : self.supprimer_pays(contenu))
 		choix_pays['options basiques'].append(["RETOUR AU MENU DE L'ACTEUR", 'R'])
 		choix_pays['actions'].append(lambda var : Menu_Ouvert(self.contenu_initial))
 		choix_pays['options basiques'].append(['QUITTER', 'Q'])
@@ -61,7 +61,7 @@ class Individu:
 		
 		return Menu_Ouvert(choix_pays)
 	
-	def afficher_section(self, section, contenu): # En faire une méthode privée ?
+	def afficher_section(self, section, contenu):
 		donnees = Data_Base().donnees
 		num_pays = section.num_pays
 		chemin = section.chemin
@@ -104,7 +104,7 @@ class Individu:
 			choix_section['actions'].append(lambda var : self.ajout_section(contenu, section))
 		if self.statut == 'a' and len(sous_sections) != 0:
 			choix_section['options basiques'].append(['SUPPRIMER UNE SECTION', 'S'])
-			choix_section['actions'].append(lambda var : self.supprimer_section(var, contenu))
+			choix_section['actions'].append(lambda var : self.supprimer_section(contenu, section))
 				
 		choix_section['options basiques'].append(['RETOUR', 'R'])
 		if len(chemin) == 0:
@@ -130,8 +130,8 @@ class Individu:
 	def ajout_pays(self, contenu):
 		raise NotImplemented()
 
-	def supprimer_section(self, contenu, contenu_precedent):
+	def supprimer_section(self, contenu, section):
 		raise NotImplemented()
 
-	def supprimer_pays(self, contenu, contenu_precedent):
+	def supprimer_pays(self, contenu):
 		raise NotImplemented()
