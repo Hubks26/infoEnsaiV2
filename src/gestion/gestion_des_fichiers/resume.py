@@ -25,7 +25,7 @@ class Resume(Afficheur):
 	def top_and_flop(self, critere, taille_classement):
 		donnees = Data_Base().donnees
 		
-		liste_triee_selon_critere = self._liste_triee_selon_critere(donnees, critere)
+		liste_triee_selon_critere = self.liste_triee_selon_critere(donnees, critere)
 		
 		top = []
 		flop = []
@@ -41,7 +41,7 @@ class Resume(Afficheur):
 	def sup_inf_seuil(self, critere, seuil):
 		donnees = Data_Base().donnees
 		
-		liste_triee_selon_critere = self._liste_triee_selon_critere(donnees, critere)
+		liste_triee_selon_critere = self.liste_triee_selon_critere(donnees, critere)
 		liste_triee_selon_critere.reverse()
 		pays_sup_seuil = []
 		pays_inf_seuil = []
@@ -58,11 +58,15 @@ class Resume(Afficheur):
 		
 		return (len(pays_sup_seuil), tableau_pays_sup, len(pays_inf_seuil), tableau_pays_inf) 
 
-	def _liste_triee_selon_critere(self, donnees, critere):
-		liste = []
-		for num_pays in range(len(donnees)):
-			pays = Pays(num_pays, donnees)
-			if pays.get_name() and self.numerisation_critere(pays, critere) != 'NA':
-				liste.append((self.numerisation_critere(pays, critere), pays))
-		liste.sort()
-		return liste
+	def tableau_classes_age(self, liste_pays_a_afficher):
+		noms_pays = [self.simplification(pays.get_name()) for pays in liste_pays_a_afficher]
+		
+		criteres = ["0-14", "15-24", "25-54", "55-64", ">= 65"]
+		
+		valeurs_classes_age = [[self.simplification(pays.get_classe_age1()) for pays in liste_pays_a_afficher],
+							[self.simplification(pays.get_classe_age2()) for pays in liste_pays_a_afficher],
+							[self.simplification(pays.get_classe_age3()) for pays in liste_pays_a_afficher],
+							[self.simplification(pays.get_classe_age4()) for pays in liste_pays_a_afficher],
+							[self.simplification(pays.get_classe_age5()) for pays in liste_pays_a_afficher]]
+		
+		return pandas.DataFrame(valeurs_classes_age, index = criteres, columns = noms_pays)

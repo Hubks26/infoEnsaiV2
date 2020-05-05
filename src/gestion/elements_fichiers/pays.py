@@ -82,6 +82,41 @@ class Pays(Section):
 			depenses_militaires = 'NA'
 		return depenses_militaires
 	
+	def get_classe_age1(self):
+		try:
+			depenses_sante = self.contenu['People and Society']['Age structure']["0-14 years"]["text"]
+		except KeyError:
+			depenses_sante = 'NA'
+		return depenses_sante
+	
+	def get_classe_age2(self):
+		try:
+			depenses_sante = self.contenu['People and Society']['Age structure']["15-24 years"]["text"]
+		except KeyError:
+			depenses_sante = 'NA'
+		return depenses_sante
+	
+	def get_classe_age3(self):
+		try:
+			depenses_sante = self.contenu['People and Society']['Age structure']["25-54 years"]["text"]
+		except KeyError:
+			depenses_sante = 'NA'
+		return depenses_sante
+	
+	def get_classe_age4(self):
+		try:
+			depenses_sante = self.contenu['People and Society']['Age structure']["55-64 years"]["text"]
+		except KeyError:
+			depenses_sante = 'NA'
+		return depenses_sante
+	
+	def get_classe_age5(self):
+		try:
+			depenses_sante = self.contenu['People and Society']['Age structure']["65 years and over"]["text"]
+		except KeyError:
+			depenses_sante = 'NA'
+		return depenses_sante
+	
 	def get_critere(self, critere):
 		if critere == 'superficie':
 			txt = self.get_superficie()
@@ -101,6 +136,16 @@ class Pays(Section):
 			txt = self.get_depenses_education()
 		elif critere == 'dépenses militaires':
 			txt = self.get_depenses_militaires()
+		elif critere == '0-14':	
+			txt = self.get_classe_age1()
+		elif critere == '15-24':
+			txt = self.get_classe_age2()
+		elif critere == '25-54':
+			txt = self.get_classe_age3()
+		elif critere == '55-64':
+			txt = self.get_classe_age4()
+		elif critere == '>=65':
+			txt = self.get_classe_age5()
 		else:
 			raise KeyError
 		return txt

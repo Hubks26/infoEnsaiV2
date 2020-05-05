@@ -3,6 +3,7 @@ from acteurs.contributeur import Contributeur
 from gestion.elements_fichiers.data_base import Data_Base
 from gestion.elements_fichiers.pays import Pays
 from gestion.gestion_des_fichiers.resume import Resume
+from gestion.gestion_des_fichiers.graphique import Graphique
 
 class Data_Scientist(Contributeur):
 	def __init__(self):
@@ -102,9 +103,9 @@ class Data_Scientist(Contributeur):
 		
 		top, flop = resume.top_and_flop(critere, n)
 		
-		print("\nTop selon le critère : {}\n".format(critere))
+		print("\nTop selon le critère : {}\n".format(critere.upper()))
 		print(top)
-		print("\n\nFlop selon le critère : {}\n".format(critere))
+		print("\n\nFlop selon le critère : {}\n".format(critere.upper()))
 		print(flop)
 		input("\nAppuyez sur entrer pour continuer.")
 		
@@ -155,6 +156,51 @@ class Data_Scientist(Contributeur):
 		input("\nAppuyez sur entrer pour continuer.")
 		
 		return self.resume_seuil(contenu)
+	
+	def classes_age(self, contenu, liste_pays_a_afficher=[]):
+		resume = Resume()
+		if len(liste_pays_a_afficher) == 0:
+			return self._ajout_pays_table_criteres(contenu, liste_pays_a_afficher, self.classes_age)
+		
+		contenu_menu_classes_age = {}
+		contenu_menu_classes_age['individu'] = contenu['individu']
+		contenu_menu_classes_age['pseudo'] = contenu['pseudo']
+		contenu_menu_classes_age['question'] = resume.tableau_classes_age(liste_pays_a_afficher)
+		contenu_menu_classes_age["options"] = ["Ajouter un pays à la table", "Retirer un pays de la table"]
+		contenu_menu_classes_age['options basiques'] = [
+			["RETOUR", 'R'],
+			["RETOUR AU MENU DE L'ACTEUR", 'RMA'],
+			["QUITTER", 'Q']]
+		contenu_menu_classes_age["actions"] = [
+			lambda var : self._ajout_pays_table_criteres(var, liste_pays_a_afficher, self.classes_age),
+			lambda var : self._retrait_pays_table_criteres(var, liste_pays_a_afficher, self.classes_age),
+			lambda var : self.resume_stat(var),
+			lambda var : Menu_Ouvert(self.contenu_initial),
+			self.quitter]
+		
+		return Menu_Ouvert(contenu_menu_classes_age)
+	
+	def diag_barres(self, contenu, critere=None):
+		graphique = Graphique()
+		if not critere:
+			return self._choix_critere(contenu, self.diag_barres)
+		else :
+			print('\nLe critère choisi est {}.'.format(critere.upper()))
+		
+		input("Appuyez sur entrer pour afficher le diagramme.")
+		graphique.diagramme_en_barres(critere)
+		input("\nAppuyez sur entrer pour continuer.")
+		
+		return self.diag_barres(contenu)
+	
+	def box_plot(self, contenu):
+		graphique = Graphique()
+		
+		input("\nAppuyez sur entrer pour afficher le diagramme.")
+		graphique.boites_a_moustache()
+		input("\nAppuyez sur entrer pour continuer.")
+		
+		return self.representation_graphique(contenu)
 	
 	def _ajout_pays_table_criteres(self,contenu, liste_pays_a_afficher, fonction_a_appliquer):
 		donnees = Data_Base().donnees

@@ -57,3 +57,12 @@ class Afficheur(Lecteur):
 				txt = txt[:i-1]
 				break
 		return txt
+	
+	def liste_triee_selon_critere(self, donnees, critere):
+		liste = []
+		for num_pays in range(len(donnees)):
+			pays = Pays(num_pays, donnees)
+			if pays.get_name() and self.numerisation_critere(pays, critere) != 'NA':
+				liste.append((self.numerisation_critere(pays, critere), pays))
+		liste.sort()
+		return liste
