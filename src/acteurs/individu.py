@@ -32,7 +32,6 @@ class Individu:
 		choix_pays = {}
 		choix_pays['question'] = 'Choisissez un pays.'
 		choix_pays['individu'] = contenu['individu']
-		choix_pays['chemin de la recherche'] = []
 		
 		liste_des_pays = []
 		for num_pays in range(nb_pays):

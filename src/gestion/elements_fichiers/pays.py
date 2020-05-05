@@ -3,6 +3,9 @@ from gestion.elements_fichiers.section import Section
 class Pays(Section):
 	def __init__(self, num_pays, donnees):
 		super().__init__(num_pays, donnees)
+		
+	def __lt__(self, autre_pays):
+		return self.num_pays > autre_pays.num_pays
 
 	def get_name(self):
 		try:
@@ -20,64 +23,87 @@ class Pays(Section):
 		try:
 			superficie = self.contenu['Geography']['Area']['total']['text']
 		except KeyError:
-			superficie = 'Na'
+			superficie = 'NA'
 		return superficie
 
 	def get_pop(self):
 		try:
 			pop = self.contenu['People and Society']['Population']['text']
 		except KeyError:
-			pop = 'Na'
+			pop = 'NA'
 		return pop
 
 	def get_croissance_demo(self):
 		try:
 			croissance_demo = self.contenu['People and Society']['Population growth rate']['text']
 		except KeyError:
-			croissance_demo = 'Na'
+			croissance_demo = 'NA'
 		return croissance_demo
 
 	def get_inflation(self):
 		try:
 			inflation = self.contenu['Economy']['Inflation rate (consumer prices)']['text']
 		except KeyError:
-			inflation = 'Na'
+			inflation = 'NA'
 		return inflation
 
 	def get_dette(self):
 		try:
 			dette = self.contenu['Economy']['Debt - external']['text']
 		except KeyError:
-			dette = 'Na'
+			dette = 'NA'
 		return dette
 
 	def get_chomage(self):
 		try:
 			chomage = self.contenu['Economy']['Unemployment rate']['text']
 		except KeyError:
-			chomage = 'Na'
+			chomage = 'NA'
 		return chomage
 
 	def get_depenses_sante(self):
 		try:
 			depenses_sante = self.contenu['People and Society']['Health expenditures']['text']
 		except KeyError:
-			depenses_sante = 'Na'
+			depenses_sante = 'NA'
 		return depenses_sante
 
 	def get_depenses_education(self):
 		try:
 			depenses_education = self.contenu['People and Society']['Education expenditures']['text']
 		except KeyError:
-			depenses_education = 'Na'
+			depenses_education = 'NA'
 		return depenses_education
 
 	def get_depenses_militaires(self):
 		try:
 			depenses_militaires = self.contenu['Military and Security']['Military expenditures']['text']
 		except KeyError:
-			depenses_militaires = 'Na'
+			depenses_militaires = 'NA'
 		return depenses_militaires
+	
+	def get_critere(self, critere):
+		if critere == 'superficie':
+			txt = self.get_superficie()
+		elif critere == 'population':
+			txt = self.get_pop()
+		elif critere == 'croissance démographique':
+			txt = self.get_croissance_demo()
+		elif critere == 'inflation':
+			txt = self.get_inflation()   
+		elif critere == 'dette':
+			txt = self.get_dette()
+		elif critere == 'chômage':
+			txt = self.get_chomage()
+		elif critere == 'dépenses santé':
+			txt = self.get_depenses_sante()
+		elif critere == 'dépenses éducation':
+			txt = self.get_depenses_education()
+		elif critere == 'dépenses militaires':
+			txt = self.get_depenses_militaires()
+		else:
+			raise KeyError
+		return txt
 
 	def set_name(self, nom_pays):
 		self.contenu.update({'Government' : {'Country name' : {'conventional short form' : {'text' : nom_pays}, 'conventional long form' : {'text' : nom_pays}}}})

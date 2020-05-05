@@ -3,26 +3,7 @@ from gestion.elements_fichiers.pays import Pays
 
 class Afficheur(Lecteur):
 	def numerisation_critere(self, pays, critere):
-			if critere == 'superficie':
-				txt = pays.get_superficie()
-			elif critere == 'population':
-				txt = pays.get_pop()
-			elif critere == 'croissance démographique':
-				txt = pays.get_croissance_demo()
-			elif critere == 'inflation':
-				txt = pays.get_inflation()   
-			elif critere == 'dette':
-				txt = pays.get_dette()
-			elif critere == 'chômage':
-				txt = pays.get_chomage()
-			elif critere == 'dépenses santé':
-				txt = pays.get_depenses_sante()
-			elif critere == 'dépenses éducation':
-				txt = pays.get_depenses_education()
-			elif critere == 'dépenses militaires':
-				txt = pays.get_depenses_militaires()
-			else:
-				raise KeyError
+			txt = pays.get_critere(critere)
 
 			for i in range(len(txt)):
 				if i > 30:
@@ -54,8 +35,25 @@ class Afficheur(Lecteur):
 				txt = txt.replace(lettre,"")
 				
 			if len(txt) == 0:
-				return "Na"
+				return "NA"
 				
 			valeur_numerique = eval(txt)
 			
 			return valeur_numerique
+		
+	def simplification(self, txt):
+		for i in range(len(txt)):
+			if i > 20:
+					txt = txt[:i] + '...'
+					break
+			if txt[i] == '+':
+				if txt[i+1] == '+':
+					txt = txt[:i-1]
+					break
+			if txt[i] == ";":
+				txt = txt[:i]
+				break
+			if txt[i] == '(':
+				txt = txt[:i-1]
+				break
+		return txt

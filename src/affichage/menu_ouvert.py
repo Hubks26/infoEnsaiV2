@@ -17,7 +17,7 @@ class Menu_Ouvert(Menu):
 		for i, opt in enumerate(options): # On affiche les options du menu.
 			print('[{}] {}'.format(i+1, opt)) 
 			
-		print('')
+		if len(options_basiques) > 0 : print('')
 		
 		for opt_base in options_basiques: # On affiche les options de base : QUITTER, RETOUR...
 			print('[{}] {}'.format(opt_base[1], opt_base[0]))
