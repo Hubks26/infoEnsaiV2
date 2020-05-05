@@ -29,10 +29,10 @@ class Resume(Afficheur):
 		
 		top = []
 		flop = []
-		rang_top = range(1,n+1)
-		rang_flop = [len(liste_triee_selon_critere)-i for i in range(n)]
+		rang_top = range(1,taille_classement+1)
+		rang_flop = [len(liste_triee_selon_critere)-i for i in range(taille_classement)]
 		col = ['PAYS', critere.upper()]
-		for i in range(n):
+		for i in range(taille_classement):
 				top.append([liste_triee_selon_critere[-i-1][1].get_name(), self.simplification(liste_triee_selon_critere[-i-1][1].get_critere(critere))])
 				flop.append([liste_triee_selon_critere[i][1].get_name(), self.simplification(liste_triee_selon_critere[i][1].get_critere(critere))])
 
