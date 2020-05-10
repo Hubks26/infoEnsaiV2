@@ -1,3 +1,4 @@
+import getpass as gp
 from affichage.menu_ouvert import Menu_Ouvert
 from acteurs.consultant import Consultant
 from gestion.elements_fichiers.compte import Compte
@@ -23,7 +24,7 @@ class Contributeur(Consultant):
 		liste_des_comptes = gestionnaire.read(Compte().get_chemin_fichier())
 		
 		pseudo = input("\nEntrez votre pseudo : ")
-		mot_de_passe = input("Entrez votre mot de passe : ")
+		mot_de_passe = gp.getpass("Entrez votre mot de passe : ")
 		
 		for compte in liste_des_comptes:
 			if self.statut == compte.get_statut() and pseudo == compte.get_pseudo() and mot_de_passe == compte.get_mot_de_passe():

@@ -1,3 +1,4 @@
+import getpass as gp
 from affichage.menu_ouvert import Menu_Ouvert
 from acteurs.geographe import Geographe
 from acteurs.data_scientist import Data_Scientist
@@ -50,11 +51,11 @@ class Admin(Geographe, Data_Scientist):
 			
 		while True:
 			while True:
-				mot_de_passe = input("Entrez le mot de passe : ")
+				mot_de_passe = gp.getpass("Entrez le mot de passe : ")
 				if len(mot_de_passe) >= 4:
 					break
 				print("\nVotre mot de passe doit contenir au moins 4 caractères.\n")
-			mot_de_passe_confirmation = input("Confirmez le mot de passe : ")
+			mot_de_passe_confirmation = gp.getpass("Confirmez le mot de passe : ")
 			if mot_de_passe == mot_de_passe_confirmation:
 				break
 			print("\nLa confirmation ne correspond pas au mot de passe initial.\n")
