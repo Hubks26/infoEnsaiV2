@@ -33,9 +33,9 @@ class Gestionnaire_des_Menus:
 			'actions' : 
 			[
 				(lambda contenu : self.taches_permises([1], Consultant())),
-				(lambda contenu : self.taches_permises([0, 1, 2, 3, 4], Data_Scientist())),
-				(lambda contenu : self.taches_permises([0, 1, 5], Geographe())),
-				(lambda contenu : self.taches_permises([0, 1, 2, 3, 4, 5, 6], Admin())),
+				(lambda contenu : self.taches_permises([0, 1, 2, 3], Data_Scientist())),
+				(lambda contenu : self.taches_permises([0, 1, 4], Geographe())),
+				(lambda contenu : self.taches_permises([0, 1, 2, 3, 4, 5], Admin())),
 				Individu().quitter
 			],
 			'individu' :
@@ -54,7 +54,6 @@ class Gestionnaire_des_Menus:
 				"Afficher les données d'un pays",
 				'Acceder aux résumés statistiques',
 				'Représentations graphiques',
-				'Recherche avancée',
 				'Décider de valider ou de refuser une correction',
 				'Créer ou supprimer un compte',
 			],
@@ -65,11 +64,10 @@ class Gestionnaire_des_Menus:
 			],
 			'actions' : 
 			[
-				lambda contenu : contenu['individu'].se_connecter(contenu), # TODO Ici on a les fonctions de l'ancien code à changer TODO
+				lambda contenu : contenu['individu'].se_connecter(contenu),
 				lambda contenu : contenu['individu'].afficher_pays(contenu),
 				(lambda contenu : contenu['individu'].resume_stat(contenu)),
 				(lambda contenu : contenu['individu'].representation_graphique(contenu)),
-				(lambda contenu : temporaire_function),
 				(lambda contenu : contenu['individu'].gestion_corrections(contenu)),
 				(lambda contenu : contenu['individu'].gestion_compte(contenu)),
 				(lambda contenu : Menu_Ouvert(self.contenu_du_menu_initial)),

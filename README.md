@@ -12,19 +12,19 @@ ___
 
 ## Comment lancer l'application
 
-Ce programme fonctionne avec python 3.6.9 et nécessite les bibliothèques matplotlib et pandas.
+Ce programme fonctionne avec python 3.6.9 et nécessite les bibliothèques matplotlib, pandas, numpy et scikit-learn.
 
-Pour installer matplotlib sur linux vous pouvez utiliser les commandes suivantes dans :
-
-sudo apt-get install python3-pip
-
-pip3 install matplotlib
-
-Pour installer pandas sur linux vous pouvez utiliser les commandes suivantes dans :
+Pour installer matplotlib, panda et numpy sur linux vous pouvez utiliser les commandes suivantes dans :
 
 sudo apt-get install python3-pip
 
-pip3 install pandas
+pip3 install matplotlib pandas numpy
+
+Pour installer scikit-learn sur linux vous pouvez utiliser les commandes suivantes dans :
+
+sudo apt-get install python3-pip
+
+pip3 install -U scikit-learn
 
 Executez le fichier main.py depuis le répertoire src : python3 main.py
 

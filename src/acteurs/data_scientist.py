@@ -23,17 +23,22 @@ class Data_Scientist(Contributeur):
 				"Afficher les critères usuels d'un ou plusieurs pays",
 				"Afficher les premiers/derniers pays selon un certain critère", 
 				"Afficher les pays dont un critère dépasse un certain seuil",
-				"Afficher le tableau des classes d'âge pour certains pays"]
+				"Afficher le tableau des classes d'âge pour certains pays",
+				"Afficher la somme des critères cumulables",
+				"Afficher le summary d'un critère",
+				"Afficher les différents profils de pays"]
 			choix_resume['options basiques'] = [["RETOUR AU MENU DE L'ACTEUR", 'R'], ["QUITTER", 'Q']]
 			choix_resume["actions"] = [
 				lambda var : self.criteres_usuels(contenu), 
 				lambda var : self.top_flop(contenu), 
 				lambda var : self.resume_seuil(contenu), 
-				lambda var : self.classes_age(contenu), 
+				lambda var : self.classes_age(contenu),
+				lambda var : self.somme(contenu),
+				lambda var : self.summary(contenu),
+				lambda var : self.profils_pays(contenu),
 				lambda var : Menu_Ouvert(self.contenu_initial), 
 				self.quitter]
 			return Menu_Ouvert(choix_resume)
-
 		else:
 			return Menu_Ouvert(contenu)
 		
@@ -77,7 +82,6 @@ class Data_Scientist(Contributeur):
 			lambda var : self.resume_stat(var),
 			lambda var : Menu_Ouvert(self.contenu_initial),
 			self.quitter]
-		
 		return Menu_Ouvert(contenu_menu_criteres)
 	
 	def top_flop(self, contenu, critere=None):
@@ -108,7 +112,6 @@ class Data_Scientist(Contributeur):
 		print("\n\nFlop selon le critère : {}\n".format(critere.upper()))
 		print(flop)
 		input("\nAppuyez sur entrer pour continuer.")
-		
 		return self.top_flop(contenu)
 	
 	def resume_seuil(self, contenu, critere=None):
@@ -154,7 +157,6 @@ class Data_Scientist(Contributeur):
 			print(tableau_pays_inf)
 				
 		input("\nAppuyez sur entrer pour continuer.")
-		
 		return self.resume_seuil(contenu)
 	
 	def classes_age(self, contenu, liste_pays_a_afficher=[]):
@@ -180,17 +182,48 @@ class Data_Scientist(Contributeur):
 		
 		return Menu_Ouvert(contenu_menu_classes_age)
 	
+	def somme(self, contenu, critere=None):
+		resume = Resume()
+		print(resume.somme())
+		input("\nAppuyez sur entrer pour continuer.")
+		return self.resume_stat(contenu)
+	
+	def summary(self, contenu, critere=None):
+		resume = Resume()
+		print('')
+		print(resume.summary())
+		input("\nAppuyez sur entrer pour continuer.")
+		return self.resume_stat(contenu)
+	
+	def profils_pays(self, contenu):
+		resume = Resume()
+		while True:
+			nb_cluster = input('\nEntrez le nombre de clusters que vous désirez (entre 3 et 10)\n> ')
+			try :
+				nb_cluster = int(nb_cluster)
+			except ValueError:
+				print('\nVeuillez entrer un entier')
+				continue
+			if 3 > nb_cluster or nb_cluster > 10:
+				print('\nLe nombre de clusters doit être compris entre 3 et 10')
+				continue
+			break
+		
+		print('')
+		print(resume.clustering(nb_cluster))
+		input("\nAppuyez sur entrer pour continuer.")
+		return self.resume_stat(contenu)
+	
 	def diag_barres(self, contenu, critere=None):
 		graphique = Graphique()
 		if not critere:
-			return self._choix_critere(contenu, self.diag_barres)
+			return self._choix_critere(contenu, self.diag_barres, graphique=True)
 		else :
 			print('\nLe critère choisi est {}.'.format(critere.upper()))
 		
 		input("Appuyez sur entrer pour afficher le diagramme.")
 		graphique.diagramme_en_barres(critere)
 		input("\nAppuyez sur entrer pour continuer.")
-		
 		return self.diag_barres(contenu)
 	
 	def box_plot(self, contenu):
@@ -199,7 +232,6 @@ class Data_Scientist(Contributeur):
 		input("\nAppuyez sur entrer pour afficher le diagramme.")
 		graphique.boites_a_moustache()
 		input("\nAppuyez sur entrer pour continuer.")
-		
 		return self.representation_graphique(contenu)
 	
 	def _ajout_pays_table_criteres(self,contenu, liste_pays_a_afficher, fonction_a_appliquer):
@@ -250,15 +282,19 @@ class Data_Scientist(Contributeur):
 		
 		return Menu_Ouvert(choix_pays)
 	
-	def _choix_critere(self, contenu, fonction_a_appliquer):
+	def _choix_critere(self, contenu, fonction_a_appliquer, graphique=False):
 		criteres = ['Superficie', 'Population', 'Croissance démographique', 'Inflation', 'Dette', 'Taux de chômage', 'Taux de dépenses en santé', 'Taux de dépenses en éducation', 'Taux de dépenses militaires']
+		
+		return_function = lambda var : self.resume_stat(var)
+		if graphique:
+			return_function = lambda var : self.representation_graphique(var)
 		
 		choix_critere = {}
 		choix_critere["question"] = "Choisissez un critère."
 		choix_critere["individu"] = contenu["individu"]
 		choix_critere['pseudo'] = contenu['pseudo']
 		choix_critere["options"] = criteres
-		choix_critere['options basiques'] = [['RETOUR', 'R'],["RETOUR AU MENU DE L'ACTEUR", 'RMA'], ["QUITTER", 'Q']]
+		choix_critere['options basiques'] = [['RETOUR', 'R'], ["RETOUR AU MENU DE L'ACTEUR", 'RMA'], ["QUITTER", 'Q']]
 		choix_critere["actions"] = [
 			lambda var : fonction_a_appliquer(contenu, 'superficie'),
 			lambda var : fonction_a_appliquer(contenu, 'population'),
@@ -269,9 +305,8 @@ class Data_Scientist(Contributeur):
 			lambda var : fonction_a_appliquer(contenu, 'dépenses santé'),
 			lambda var : fonction_a_appliquer(contenu, 'dépenses éducation'),
 			lambda var : fonction_a_appliquer(contenu, 'dépenses militaires'),
-			lambda var : self.resume_stat(var),
+			return_function,
 			lambda var : Menu_Ouvert(self.contenu_initial),
 			self.quitter]
 		
 		return Menu_Ouvert(choix_critere)
-		

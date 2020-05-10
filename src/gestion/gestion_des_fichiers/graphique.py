@@ -8,11 +8,10 @@ class Graphique(Afficheur):
 	def diagramme_en_barres(self, critere):
 		donnees = Data_Base().donnees
 		liste_triee_selon_critere = self.liste_triee_selon_critere(donnees, critere)
-		liste_triee_selon_critere.reverse()
 		liste_triee = [elm[0] for elm in liste_triee_selon_critere]
-		x = range(len(liste_triee))
-		width = 0.9
-		plt.bar(x, liste_triee, width, color='b')
+		x = [self.simplification(elm[1].get_name()) for elm in liste_triee_selon_critere]
+		plt.barh(x, liste_triee, color='b')
+		plt.yticks(fontsize=3.2)
 		plt.show()
 		
 	def boites_a_moustache(self):

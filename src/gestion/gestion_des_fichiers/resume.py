@@ -1,4 +1,6 @@
 import pandas
+import numpy as np
+from sklearn.cluster import KMeans
 from gestion.gestion_des_fichiers.afficheur import Afficheur
 from gestion.elements_fichiers.data_base import Data_Base
 from gestion.elements_fichiers.pays import Pays
@@ -70,3 +72,75 @@ class Resume(Afficheur):
 							[self.simplification(pays.get_classe_age5()) for pays in liste_pays_a_afficher]]
 		
 		return pandas.DataFrame(valeurs_classes_age, index = criteres, columns = noms_pays)
+	
+	def somme(self):
+		donnees = Data_Base().donnees
+		superficie_tot = sum([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'superficie')])
+		population_tot = sum([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'population')])
+		dette_tot = sum([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'dette')])
+		
+		criteres = ["La somme des superficies de tous les pays", "La somme des populations de tous les pays", "La somme des dettes de tous les pays"]
+		index = criteres
+		valeurs = [[superficie_tot],[population_tot],[dette_tot]]
+		return pandas.DataFrame(valeurs, index = criteres, columns = [''])
+		
+	def summary(self):
+		donnees = Data_Base().donnees
+		
+		superficie = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'superficie')])
+		population = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'population')])
+		croissance_demographique = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'croissance démographique')])
+		inflation = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'inflation')])
+		dette = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'dette')])
+		chomage = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'chômage')])
+		depenses_sante = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'dépenses santé')])
+		depenses_éducation = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'dépenses éducation')])
+		depenses_militaires = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'dépenses militaires')])
+		
+		dic = {'Superficie' : superficie,
+			'Population' : population,
+			'Croissance démo' : croissance_demographique,
+			'Inflation' : inflation,
+			'Dette' : dette,
+			'Chômage' : chomage,
+			'Dépenses santé' : depenses_sante,
+			'Dépenses éducation' : depenses_éducation,
+			'Dépenses militaires' : depenses_militaires}
+		
+		return pandas.DataFrame(dic).describe()
+	
+	def clustering(self, nb_clusters):
+		donnees = Data_Base().donnees
+		
+		criteres = ['superficie', 'population', 'croissance démographique', 'inflation', 'dette', 'chômage', 'dépenses santé', 'dépenses éducation', 'dépenses militaires']
+		
+		valeurs_pays = []
+		liste_des_pays_comptabilises = []
+		
+		for num_pays in range(len(donnees)):
+			pays = Pays(num_pays, donnees)
+			if pays.get_name():
+				if True not in [self.numerisation_critere(pays, critere) == 'NA' for critere in criteres]:
+					liste_des_pays_comptabilises.append(self.simplification(pays.get_name()))
+					valeurs_pays.append([self.numerisation_critere(pays, critere) for critere in criteres])
+		
+		clf = KMeans(n_clusters=nb_clusters)
+		clf.fit(np.array(valeurs_pays))
+		labels = clf.labels_
+		
+		pays_dans_clusters = [[] for i in range(nb_clusters)]
+		
+		for i in range(len(labels)):
+			for cl in range(nb_clusters):
+				if labels[i] == cl:
+					pays_dans_clusters[cl].append(liste_des_pays_comptabilises[i])
+		
+		for cluster in pays_dans_clusters:
+			while len(cluster) < max([len(cl) for cl in pays_dans_clusters]):
+				cluster.append('')
+
+		liste_des_clusters = ['Cluster {}'.format(i+1) for i in range(nb_clusters)]
+
+		return pandas.DataFrame(pays_dans_clusters, index = liste_des_clusters).T
+		
+		
