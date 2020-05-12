@@ -2,7 +2,7 @@ from affichage.menu_ouvert import Menu_Ouvert
 from affichage.menu_ferme import Menu_Ferme
 
 class Individu:
-	# Classe mère des classes Consultant.
+	# Classe mère des différents acteurs
 	
 	def __init__(self):
 		self.statut = None
