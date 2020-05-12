@@ -16,6 +16,9 @@ class Consultant(Individu):
 		self.statut = 'c'
 		
 	def afficher_pays(self, contenu):
+		""" Cette méthode permet au consultant d'afficher la liste des différents pays
+		et d'en choisir un par le nombre correspondant au pays affiché dans le menu"""
+		
 		if self.contenu_initial == {}:
 			self.contenu_initial = contenu
 			
@@ -54,6 +57,9 @@ class Consultant(Individu):
 		return Menu_Ouvert(choix_pays)
 	
 	def afficher_section(self, section, contenu):
+		"""cette méthode permet d'afficher les différentes section d'un pays sélectionné.
+		C'est la même démarche que pour la méthode afficher_pays"""
+		
 		donnees = Data_Base().donnees
 		num_pays = section.num_pays
 		chemin = section.chemin
