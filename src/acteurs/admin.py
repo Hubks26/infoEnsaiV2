@@ -8,11 +8,19 @@ from gestion.elements_fichiers.pays import Pays
 from gestion.gestion_des_fichiers.gestionnaire import Gestionnaire
 
 class Admin(Geographe, Data_Scientist):
+	"""Classe de l'administrateur"""
 	def __init__(self):
+		"""son staut est la letre 'a'"""
 		super().__init__()
 		self.statut = 'a'
 		
 	def gestion_compte(self, contenu):
+		"""Cette méthode permet d'acceder aux tâches Suppression/Création d'un compte employeur.
+		Elle renvoie les différentes tâches que peut eeffectuer l'administrateur :
+		 - Créer un compte
+		 - Supprimer un compte
+		 - Voir la liste des comptes"""
+		
 		if self.verification_connexion():
 			choix_gestion = {}
 			choix_gestion['pseudo'] = contenu['pseudo']
@@ -31,6 +39,10 @@ class Admin(Geographe, Data_Scientist):
 			return Menu_Ouvert(contenu)
 		
 	def _creer_compte(self, contenu):
+		"""Cette méthode permet à l'administrateur de créer un nouveau compte.
+		D'abord, il doit choisir le statut du nouveau acteur. Ensuite son pseudo et enfin son mot de passe.
+		Une fois validé, le nouveau compte sera insérer dans le gestionnaire des comptes."""
+		
 		gestionnaire = Gestionnaire()
 		liste_des_comptes = gestionnaire.read(Compte().get_chemin_fichier())
 		liste_des_pseudos = [compte.get_pseudo() for compte in liste_des_comptes]
@@ -65,6 +77,10 @@ class Admin(Geographe, Data_Scientist):
 		return Menu_Ouvert(contenu)
 		
 	def _supprimer_compte(self, contenu):
+		"""A l'inverse de la création d'un compte, cette méthode permet de supprimer un compte.
+		L'administrateur n'a besoin que de choisir dans une liste des pseudos des comptes. Cela ne requiert pas le mot de passe
+		de l'acteur en question. Une fois effectué, le compte sera supprimé du gestionnaire."""
+		
 		gestionnaire = Gestionnaire()
 		liste_des_comptes = gestionnaire.read(Compte().get_chemin_fichier())
 		liste_des_pseudos = [compte.get_pseudo() for compte in liste_des_comptes]
@@ -87,6 +103,8 @@ class Admin(Geographe, Data_Scientist):
 		return Menu_Ouvert(contenu)
 	
 	def _afficher_liste_des_comptes(self, contenu):
+		"""Cette méthode permet d'afficher la liste des différents comptes qu'il y a dans le gestionnaire"""
+		
 		gestionnaire = Gestionnaire()
 		liste_des_comptes = gestionnaire.read(Compte().get_chemin_fichier())
 		
@@ -99,6 +117,11 @@ class Admin(Geographe, Data_Scientist):
 		return Menu_Ouvert(contenu)
 	
 	def supprimer_section(self, contenu, section):
+		"""Contrairement au géographe, l'administrateur est le seul à pouvoir supprimer un pays ou une section.
+		Ici, cette méthode permet de supprimer une section d'un pays en question.
+		Cependant, il ne peut pas supprimer certaines sections comme 'Government' ou 'Country name' car ils contiennent
+		la liste des noms des pays."""
+		
 		gestionnaire = Gestionnaire()
 		noms_sous_sections = section.get_noms_sous_sections()
 		sections_non_supprimables = ['Government', 'Country name', 'conventional short form', 'conventional long form']
@@ -123,6 +146,9 @@ class Admin(Geographe, Data_Scientist):
 		return self.afficher_section(section, contenu)
 	
 	def supprimer_pays(self, contenu):
+		"""La méthode supprimer_pays permet de supprimer toutes les données d'un pays, y compris les informations 
+		contenu dans les différentes sections."""
+		
 		gestionnaire = Gestionnaire()
 		donnees = Data_Base().donnees
 		noms_pays = [Pays(num_pays, donnees).get_name() for num_pays in range(len(donnees))]
@@ -135,7 +161,7 @@ class Admin(Geographe, Data_Scientist):
 			else :
 				num_pays_a_supprimer = noms_pays.index(nom_pays_a_supprimer)
 			
-			confirmation = input("\nConfirmation de la suppression du pays (O/N) ? #Cela supprimera aussi toutes ses données#\n> ")
+			confirmation = input("\nConfirmation de la suppression du pays (O/N) ? \n> ")
 			if confirmation in ["o","O"]:
 				del donnees[num_pays_a_supprimer]
 				gestionnaire.update(donnees)
