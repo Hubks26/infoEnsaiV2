@@ -74,7 +74,8 @@ class Data_Scientist(Contributeur):
 			return Menu_Ouvert(contenu)
 		
 	def criteres_usuels(self, contenu, liste_pays_a_afficher = []):
-		"""???"""
+		"""Cette fonction permet au data scientist d'avoir le choix entre ajouter un pays, supprimer un pays d'une
+		liste ou bien de faire un résumé d'information de cette même liste."""
 		
 		resume = Resume()
 		if len(liste_pays_a_afficher) == 0:
@@ -264,6 +265,9 @@ class Data_Scientist(Contributeur):
 		return self.representation_graphique(contenu)
 	
 	def _ajout_pays_table_criteres(self,contenu, liste_pays_a_afficher, fonction_a_appliquer):
+		"""Cette méthode permet d'ajouter un pays à une liste afin d'appliquer une autre méthode 
+		en fonction d'un certain critère. Cette méthode est utilisé par la fonction critere_usuel."""
+		
 		donnees = Data_Base().donnees
 		nb_pays = len(donnees)
 		
@@ -295,6 +299,9 @@ class Data_Scientist(Contributeur):
 		return Menu_Ouvert(choix_pays)
 
 	def _retrait_pays_table_criteres(self,contenu, liste_pays_a_afficher, fonction_a_appliquer):
+		"""Cette méthode permet de retirer un pays d'une liste.  
+		Cette méthode est utilisé par la fonction critere_usuel."""
+		
 		if len(liste_pays_a_afficher) == 1:
 			input("\nIl doit y avoir au moins un pays dans la table.\nAppuyez sur entrer pour continuer.")
 			return fonction_a_appliquer(contenu, liste_pays_a_afficher)
@@ -312,6 +319,9 @@ class Data_Scientist(Contributeur):
 		return Menu_Ouvert(choix_pays)
 	
 	def _choix_critere(self, contenu, fonction_a_appliquer, graphique=False):
+		"""Cette méthode permet à l'utilisateur de choisir un critère sur les pays qu'il aura selectionné
+		dans la liste crée au préalable."""
+		
 		criteres = ['Superficie', 'Population', 'Croissance démographique', 'Inflation', 'Dette', 'Taux de chômage', 'Taux de dépenses en santé', 'Taux de dépenses en éducation', 'Taux de dépenses militaires']
 		
 		return_function = lambda var : self.resume_stat(var)
