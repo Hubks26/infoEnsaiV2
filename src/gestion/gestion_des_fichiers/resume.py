@@ -6,8 +6,13 @@ from gestion.elements_fichiers.data_base import Data_Base
 from gestion.elements_fichiers.pays import Pays
 
 class Resume(Afficheur):
+	"""La classe Resume permet de renvoyer des data frames"""
 	
 	def table_criteres(self, liste_pays_a_afficher):
+		"""Cette méthode permet de créer un data frame sur les pays choisi au préalable
+		par la méthode critère_usuels avec l'aide de la bibliothèque pandas.
+		Valeurs_pays est un tableau qui prend toutes les informations chiffrés des différents pays. """
+		
 		noms_pays = [self.simplification(pays.get_name()) for pays in liste_pays_a_afficher]
 		
 		criteres = ['Superficie', 'Population', 'Croissance démographique', 'Inflation', 'Dette', 'Taux de chômage', 'Taux de dépenses en santé', 'Taux de dépenses en éducation', 'Taux de dépenses militaires']
@@ -25,6 +30,10 @@ class Resume(Afficheur):
 		return pandas.DataFrame(valeurs_pays, index = criteres, columns = noms_pays)
 	
 	def top_and_flop(self, critere, taille_classement):
+		"""Cette méthode renvoie deux data frames.
+		Le premier correspond aux 'taille_classement'(entier) premiers pays selon un certain critère.
+		Le second data frame correspond aux 'taille_classement'(entier) dernier pays selon un certain critère."""
+		
 		donnees = Data_Base().donnees
 		
 		liste_triee_selon_critere = self.liste_triee_selon_critere(donnees, critere)
@@ -41,6 +50,12 @@ class Resume(Afficheur):
 		return (pandas.DataFrame(top, index = rang_top, columns = col), pandas.DataFrame(flop, index = rang_flop, columns = col))
 	
 	def sup_inf_seuil(self, critere, seuil):
+		"""Cette méthode crée deux tableaux. Elle prend en argument un critère et un seuil.
+		La premier tableau correspond aux pays dépassant le seuil déterminé par l'utilisateur.
+		Le second correspond aux pays sous ce seuil. Elle renvoie 4 informations :
+		le nombre de pays dépassant le seuil avec le tableau des pays correspondant avec les valeurs de ce critère, 
+		et le nombre de pays ne dépassant pas le seuil avec le tableau des pays correspondant avec les valeurs de ce critère"""
+		
 		donnees = Data_Base().donnees
 		
 		liste_triee_selon_critere = self.liste_triee_selon_critere(donnees, critere)
@@ -61,6 +76,9 @@ class Resume(Afficheur):
 		return (len(pays_sup_seuil), tableau_pays_sup, len(pays_inf_seuil), tableau_pays_inf) 
 
 	def tableau_classes_age(self, liste_pays_a_afficher):
+		"""Cette méthode renvoie un data frame concernant les différentes classes d'ages
+		en prenant en compte les pays choisis au préalable."""
+		
 		noms_pays = [self.simplification(pays.get_name()) for pays in liste_pays_a_afficher]
 		
 		criteres = ["0-14", "15-24", "25-54", "55-64", ">= 65"]
@@ -74,6 +92,9 @@ class Resume(Afficheur):
 		return pandas.DataFrame(valeurs_classes_age, index = criteres, columns = noms_pays)
 	
 	def somme(self):
+		"""Cette méthode renvoie un data frame à une colonne. Elle fait la somme
+		des différents critères sur les pays."""
+		
 		donnees = Data_Base().donnees
 		superficie_tot = sum([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'superficie')])
 		population_tot = sum([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'population')])
@@ -85,6 +106,10 @@ class Resume(Afficheur):
 		return pandas.DataFrame(valeurs, index = criteres, columns = [''])
 		
 	def summary(self):
+		"""La méthode summary renvoie un data frame donnant des statistiques sur les différents critères (nombres de valeurs, moyenne, écart-type, ...)
+		mais uniquement sur les colonnes numériques. Pour cela, la méthode crée un dictionnaire où chaque clé correspond à un critère
+		que l'on associe à un data frame. Enfin, on utilise la méthode describe de pandas pour avoir notre résumé statistique."""
+		
 		donnees = Data_Base().donnees
 		
 		superficie = pandas.Series([elm[0] for elm in self.liste_triee_selon_critere(donnees, 'superficie')])
@@ -110,6 +135,11 @@ class Resume(Afficheur):
 		return pandas.DataFrame(dic).describe()
 	
 	def clustering(self, nb_clusters):
+		"""Cette méthode utilise la méthode des Kmeans pour permettre à la fonction de créer des classes entre les pays.
+		Elle prend en argument le nombre de classes que l'utilisateur veut former.
+		Cette méthode renvoie un data frame où chaque colonne correspond à chaque classe 
+		avec le noms des pays dans celles ci."""
+		
 		donnees = Data_Base().donnees
 		
 		criteres = ['superficie', 'population', 'croissance démographique', 'inflation', 'dette', 'chômage', 'dépenses santé', 'dépenses éducation', 'dépenses militaires']
