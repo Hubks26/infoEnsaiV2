@@ -12,6 +12,8 @@ class Consultant(Individu):
 	# Le statut du consultant est "consultant"
 	
 	def __init__(self):
+		"""le statut de l'acteur est la lettre 'c'"""
+		
 		super().__init__()
 		self.statut = 'c'
 		
