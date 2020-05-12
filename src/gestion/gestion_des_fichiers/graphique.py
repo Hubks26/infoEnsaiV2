@@ -4,8 +4,11 @@ from gestion.elements_fichiers.data_base import Data_Base
 from gestion.elements_fichiers.pays import Pays
 
 class Graphique(Afficheur):
+	"""Cette classe permet de créer les graphiques : les diagrammes en barres et les boites à moustaches"""
 
 	def diagramme_en_barres(self, critere):
+		"""Cette méthode crée un diagramme en barre selon un critère choisi par le data scientist"""
+		
 		donnees = Data_Base().donnees
 		liste_triee_selon_critere = self.liste_triee_selon_critere(donnees, critere)
 		liste_triee = [elm[0] for elm in liste_triee_selon_critere]
@@ -15,6 +18,8 @@ class Graphique(Afficheur):
 		plt.show()
 		
 	def boites_a_moustache(self):
+		"""Cette méthode crée une boite à moustache sur les différentes classes d'ages."""
+		
 		donnees = Data_Base().donnees
 		
 		classe_age_0 = []
