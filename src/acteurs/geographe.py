@@ -6,11 +6,18 @@ from gestion.elements_fichiers.pays import Pays
 from gestion.gestion_des_fichiers.gestionnaire import Gestionnaire
 
 class Geographe(Contributeur):
+	"""Cette classe correspond à la classe du géographe."""
+	
 	def __init__(self):
+		"""son statut est la lettre 'g'"""
+		
 		super().__init__()
 		self.statut = 'g'
 		
 	def correction(self, contenu, section_de_texte):
+		""" La méthode correction prend en compte un contenu de menu et un texte.
+		Elle permet la modification d'une information par un nouveau texte."""
+		
 		gestionnaire = Gestionnaire()
 		chemin = section_de_texte.chemin
 		
@@ -36,6 +43,8 @@ class Geographe(Contributeur):
 						input("\nVotre tentative de modification n'a pas abouti.\nAppuyez sur entrer pour continuer.")
 						
 	def ajout_texte(self, contenu, section):
+		"""La méthode ajout_texte permet d'ajouter un texte à une section donnée"""
+		
 		gestionnaire = Gestionnaire()
 		section_mere = Section(section.num_pays, section.donnees, section.chemin[:-1])
 		
@@ -59,6 +68,8 @@ class Geographe(Contributeur):
 		return self.afficher_section(section, contenu)
 						
 	def ajout_section(self, contenu, section):
+		"""Cette méthode permet de créer une nouvelle section dans un pays"""
+		
 		gestionnaire = Gestionnaire()
 		noms_indisponibles = section.get_noms_sous_sections()
 		
@@ -87,6 +98,8 @@ class Geographe(Contributeur):
 		return self.afficher_section(section, contenu)
 
 	def ajout_pays(self, contenu):
+		"""Cette méthode permet d'ajouter un pays comme la précédente méthode ajout_section"""
+		
 		gestionnaire = Gestionnaire()
 		donnees = Data_Base().donnees
 		noms_indisponibles = [Pays(num_pays, donnees).get_name() for num_pays in range(len(donnees)) if Pays(num_pays, donnees).get_name()]
@@ -117,6 +130,10 @@ class Geographe(Contributeur):
 		return self.afficher_pays(contenu)
 	
 	def gestion_corrections(self, contenu):
+		"""La gestion des coorections se fait par cette méthode. Elle affiche les
+		différentes propositions que les autres acteurs ont suggéré. Le géographe n'a plus qu'à 
+		choisir quelle correction il veut observer"""
+		
 		gestionnaire = Gestionnaire()
 		liste_des_corrections = gestionnaire.read('../media/files/props_corrections')
 		
@@ -142,6 +159,9 @@ class Geographe(Contributeur):
 			return Menu_Ouvert(contenu)
 		
 	def _decider_correction(self, contenu, prop_cor):
+		"""Cette méthode permet au géographe de choisir entre valider ou refuser
+		une proposition de correction."""
+		
 		donnees = Data_Base().donnees
 		gestionnaire = Gestionnaire()
 		try :
@@ -171,6 +191,8 @@ class Geographe(Contributeur):
 		return self.gestion_corrections(contenu)
 			
 	def _refuser_prop(self, prop_cor):
+		"""méthode qui effectue la suppression de la proposition de correction avec une double confirmation"""
+		
 		gestionnaire = Gestionnaire()
 		confirmation = input("\nConfirmation du refus de la proposition (O/N) ? #Cela supprimera la proposition#\n> ")
 		if confirmation in ['o', 'O']:
@@ -180,6 +202,9 @@ class Geographe(Contributeur):
 			input("\nVotre tentative de refus n'a pas abouti.\nAppuyez sur entrer pour continuer.")
 	
 	def _valider_prop(self, prop_cor, section_du_texte):
+		"""Méthode qui valide la proposition de correction. Elle va remplacer le texte par la proposition.
+		Puis, elle va supprimer la proposition."""
+		
 		gestionnaire = Gestionnaire()
 		confirmation = input("\nConfirmation de la validation du nouveau texte (O/N) ? #Cela supprimera l'ancien texte#\n> ")
 		if confirmation in ['o', 'O']:
