@@ -130,6 +130,8 @@ class Data_Scientist(Contributeur):
 		return self.top_flop(contenu)
 	
 	def resume_seuil(self, contenu, critere=None):
+		"""Afficher les pays dont un critère dépasse un certain seuil"""
+		
 		resume = Resume()
 		if not critere:
 			return self._choix_critere(contenu, self.resume_seuil)
@@ -175,6 +177,8 @@ class Data_Scientist(Contributeur):
 		return self.resume_seuil(contenu)
 	
 	def classes_age(self, contenu, liste_pays_a_afficher=[]):
+		"""Afficher le tableau des classes d'âge pour certains pays"""
+		
 		resume = Resume()
 		if len(liste_pays_a_afficher) == 0:
 			return self._ajout_pays_table_criteres(contenu, liste_pays_a_afficher, self.classes_age)
@@ -198,12 +202,16 @@ class Data_Scientist(Contributeur):
 		return Menu_Ouvert(contenu_menu_classes_age)
 	
 	def somme(self, contenu, critere=None):
+		"""Afficher la somme des critères cumulables"""
+		
 		resume = Resume()
 		print(resume.somme())
 		input("\nAppuyez sur entrer pour continuer.")
 		return self.resume_stat(contenu)
 	
 	def summary(self, contenu, critere=None):
+		"""Afficher le summary d'un critère"""
+		
 		resume = Resume()
 		print('')
 		print(resume.summary())
@@ -211,6 +219,8 @@ class Data_Scientist(Contributeur):
 		return self.resume_stat(contenu)
 	
 	def profils_pays(self, contenu):
+		"""Afficher les différents profils de pays"""
+		
 		resume = Resume()
 		while True:
 			nb_cluster = input('\nEntrez le nombre de clusters que vous désirez (entre 3 et 10)\n> ')
@@ -230,6 +240,8 @@ class Data_Scientist(Contributeur):
 		return self.resume_stat(contenu)
 	
 	def diag_barres(self, contenu, critere=None):
+		"""Cette méthode permet de retourner le diagramme en barres selon un critère"""
+		
 		graphique = Graphique()
 		if not critere:
 			return self._choix_critere(contenu, self.diag_barres, graphique=True)
@@ -242,6 +254,8 @@ class Data_Scientist(Contributeur):
 		return self.diag_barres(contenu)
 	
 	def box_plot(self, contenu):
+		"""Cette méthode permet de renvoyer les boites à moustaches"""
+		
 		graphique = Graphique()
 		
 		input("\nAppuyez sur entrer pour afficher le diagramme.")
