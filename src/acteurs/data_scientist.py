@@ -6,7 +6,11 @@ from gestion.gestion_des_fichiers.resume import Resume
 from gestion.gestion_des_fichiers.graphique import Graphique
 
 class Data_Scientist(Contributeur):
+	"""Cette classe correspond au Data Scientist"""
+	
 	def __init__(self):
+		"""Son statut est la lettre 'c'"""
+		
 		super().__init__()
 		self.statut = 'd'
 		
