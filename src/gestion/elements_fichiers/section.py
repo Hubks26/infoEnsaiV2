@@ -1,6 +1,10 @@
 
 class Section:
+	"""Cette classe permet de gérer des opérations élémentaires sur les sections de chaque pays"""
+	
 	def __init__(self, num_pays, donnees, chemin = []):
+		"""Elle permet de créer une nouvelle section pour un pays"""
+		
 		assert num_pays <= len(donnees) and num_pays >= 0, "num_pays ne correspond à aucun pays de la base"
 		
 		contenu = donnees[num_pays]
@@ -14,6 +18,8 @@ class Section:
 		self.donnees = donnees
 		
 	def get_noms_sous_sections(self):
+		"""Permet de retourner la liste des sections d'un pays de la base de données"""
+		
 		noms_sous_sections = []
 		for sous_section in self.contenu.keys():
 			noms_sous_sections.append(sous_section)
