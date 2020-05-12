@@ -9,9 +9,6 @@ class Contributeur(Consultant):
 		super().__init__()
 		self.est_connecte = False
 		self.statut = None
-	
-	def connexion(self):
-		raise NotImplemented
 		
 	def verification_connexion(self):
 		if not self.est_connecte:

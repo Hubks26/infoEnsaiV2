@@ -1,7 +1,6 @@
 
 class Section:
 	def __init__(self, num_pays, donnees, chemin = []):
-		
 		assert num_pays <= len(donnees) and num_pays >= 0, "num_pays ne correspond à aucun pays de la base"
 		
 		contenu = donnees[num_pays]
@@ -22,4 +21,4 @@ class Section:
 	
 	def is_section_de_texte(self):
 		noms_sous_sections = self.get_noms_sous_sections()
-		return len(noms_sous_sections) == 1 and 'text' in noms_sous_sections
+		return 'text' in noms_sous_sections

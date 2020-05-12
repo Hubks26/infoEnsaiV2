@@ -71,8 +71,8 @@ class Geographe(Contributeur):
 				if nom_section in noms_indisponibles:
 					input("\nCe nom est déjà celui d'une section existante, veuillez en choisir un autre.\nAppuyez sur entrer pour continuer.")
 					continue
-				if (nom_section == 'Government') or (nom_section == 'Country name') or (nom_section == 'conventional short form') or (nom_section == 'conventional long form'):
-					input('\nLa section ne peut pas porter de nom tel que Government, Country name, conventional short form ou conventional long form.\nAppuyez sur entrer pour continuer.')
+				if (nom_section == 'Government') or (nom_section == 'Country name') or (nom_section == 'conventional short form') or (nom_section == 'conventional long form') or (nom_section == 'text'):
+					input('\nLa section ne peut pas porter de nom tel que Government, Country name, conventional short form, conventional long form ou text.\nAppuyez sur entrer pour continuer.')
 					continue
 				break
 			
