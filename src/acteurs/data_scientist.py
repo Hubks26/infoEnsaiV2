@@ -15,6 +15,10 @@ class Data_Scientist(Contributeur):
 		self.statut = 'd'
 		
 	def resume_stat(self, contenu):
+		"""Cette méthode est la tâche résumé d'informations. Elle affiche plusieurs tâches que peut effectuer
+		le data scientist et renverra le résultat par la méthode correspondante au choix de la tâche.
+		Ele prend en compte le contenu que ce que veut l'administrateur."""
+		
 		if self.verification_connexion():
 			if self.contenu_initial == {}:
 				self.contenu_initial = contenu
@@ -47,6 +51,9 @@ class Data_Scientist(Contributeur):
 			return Menu_Ouvert(contenu)
 		
 	def representation_graphique(self, contenu):
+		"""Cette méthode fonctionne de la même façon que la méthode resume_stat.
+		Le data scientist à le choix d'afficher un diagramme en barre ou une boite à moustache."""
+		
 		if self.verification_connexion():
 			if self.contenu_initial == {}:
 				self.contenu_initial = contenu
@@ -67,6 +74,8 @@ class Data_Scientist(Contributeur):
 			return Menu_Ouvert(contenu)
 		
 	def criteres_usuels(self, contenu, liste_pays_a_afficher = []):
+		"""???"""
+		
 		resume = Resume()
 		if len(liste_pays_a_afficher) == 0:
 			return self._ajout_pays_table_criteres(contenu, liste_pays_a_afficher, self.criteres_usuels)
@@ -89,6 +98,8 @@ class Data_Scientist(Contributeur):
 		return Menu_Ouvert(contenu_menu_criteres)
 	
 	def top_flop(self, contenu, critere=None):
+		"""Cette méthode permet d'afficher les premiers et les derniers pays selon un certain critère."""
+		
 		resume = Resume()
 		if not critere:
 			return self._choix_critere(contenu, self.top_flop)
