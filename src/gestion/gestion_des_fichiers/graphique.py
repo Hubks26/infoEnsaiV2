@@ -7,7 +7,7 @@ class Graphique(Afficheur):
 	"""Cette classe permet de créer les graphiques : les diagrammes en barres et les boites à moustaches"""
 
 	def diagramme_en_barres(self, critere):
-		"""Cette méthode crée un diagramme en barre selon un critère choisi par le data scientist"""
+		"""Cette méthode crée un diagramme en barres selon un critère choisi par le data scientist"""
 		
 		donnees = Data_Base().donnees
 		liste_triee_selon_critere = self.liste_triee_selon_critere(donnees, critere)
@@ -18,7 +18,7 @@ class Graphique(Afficheur):
 		plt.show()
 		
 	def boites_a_moustache(self):
-		"""Cette méthode crée une boite à moustache sur les différentes classes d'ages."""
+		"""Cette méthode crée une boîte à moustache sur les différentes classes d'ages."""
 		
 		donnees = Data_Base().donnees
 		
