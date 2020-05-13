@@ -1,7 +1,7 @@
 
 class Elm_Fichier:
 	"""Cette classe permet de trouver les différents fichiers qui seront utilisés 
-	par l'application comme la base de données"""
+	par l'application, comme la base de données"""
 	
 	def __init__(self, nom_fichier):
 		self.chemin = "../media/files/"
