@@ -6,7 +6,7 @@ from gestion.gestion_des_fichiers.gestionnaire import Gestionnaire
 
 class Contributeur(Consultant):
 	""" Cette classe ne représente pas un acteur.
-	Elle permet aux acteurs qui en hériteront, de se connecter afin d'acceder à 
+	Elle permet aux acteurs qui en hériteront, de se connecter afin d'accéder à 
 	leurs différentes tâches"""
 	
 	def __init__(self):
