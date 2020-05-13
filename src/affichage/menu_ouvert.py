@@ -6,7 +6,7 @@ class Menu_Ouvert(Menu):
 	def __init__(self, contenu):
 		super().__init__(contenu)
 
-	def run(self): # La méthode run permet d'afficher le menu et d'intéragir avec l'utilisateur.
+	def run(self): # La méthode run permet d'afficher le menu et d'interagir avec l'utilisateur.
 		options = self.contenu['options']
 		options_basiques = self.contenu['options basiques']
 		nb_options = len(options)
