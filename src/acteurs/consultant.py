@@ -59,7 +59,7 @@ class Consultant(Individu):
 		return Menu_Ouvert(choix_pays)
 	
 	def afficher_section(self, section, contenu):
-		"""cette méthode permet d'afficher les différentes section d'un pays sélectionné.
+		"""Cette méthode permet d'afficher les différentes sections d'un pays sélectionné.
 		C'est la même démarche que pour la méthode afficher_pays"""
 		
 		donnees = Data_Base().donnees
