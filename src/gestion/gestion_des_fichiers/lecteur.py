@@ -18,7 +18,7 @@ class Lecteur:
 		return contenu
 	
 	def write(self, chemin_du_fichier, contenu):
-		"""permet d'écrire du contenu dans le fichier"""
+		"""Permet d'écrire du contenu dans le fichier"""
 		
 		with open(chemin_du_fichier, 'wb') as fichier:
 			pickler = pickle.Pickler(fichier)
