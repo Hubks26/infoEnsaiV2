@@ -27,11 +27,11 @@ class Compte(Elm_Fichier):
 		return self._pseudo
 	
 	def get_statut(self):
-		"""renvoie le statut du compte"""
+		"""Renvoie le statut du compte"""
 		
 		return self._statut
 	
 	def get_mot_de_passe(self):
-		"""renvoie le mot de passe du compte"""
+		"""Renvoie le mot de passe du compte"""
 		
 		return self._mot_de_passe
