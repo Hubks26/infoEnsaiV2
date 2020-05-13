@@ -2,7 +2,7 @@ from gestion.gestion_des_fichiers.lecteur import Lecteur
 from gestion.elements_fichiers.pays import Pays
 
 class Afficheur(Lecteur):
-    """Cette classe permet de mettre en forme les données qui seront visible par l'utilisateur"""
+    """Cette classe permet de mettre en forme les données qui seront visibles par l'utilisateur"""
 	
     def numerisation_critere(self, pays, critere):
         """Cette méthode rend plus lisible certains nombres.
@@ -67,7 +67,7 @@ class Afficheur(Lecteur):
         return txt
 	
     def liste_triee_selon_critere(self, donnees, critere):
-        """Cette méthode a besoin d'un jeu de donnée et d'un critère. Elle renvoie une liste triée selon
+        """Cette méthode a besoin d'un jeu de données et d'un critère. Elle renvoie une liste triée selon
         un critère choisi par le data scientist."""
 		
         liste = []
