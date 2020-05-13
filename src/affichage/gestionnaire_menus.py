@@ -10,7 +10,7 @@ class Gestionnaire_des_Menus:
 	# les menus de choix des options de chaque acteur.
 	
 	def __init__(self):
-		# On définit en attribu du gestionnaire des menus 
+		# On définit en attribut du gestionnaire des menus 
 		# le contenu du menu initial de l'application
 		# ainsi que le contenu du menu regroupant toutes
 		# les actions disponibles.
@@ -81,7 +81,7 @@ class Gestionnaire_des_Menus:
 	
 	def taches_permises(self, liste_des_taches_permises, individu):
 		# Cette fonction permet de diriger l'utilisateur vers le menu où sont
-		# poposé toutes les actions qu'il a le droit d'effectuer.
+		# proposés toutes les actions qu'il a le droit d'effectuer.
 		# Elle prend en argument un liste des numéros de tâches permises pour
 		# l'utilisateur et le statut de l'utilisateur. individu est donc de 
 		# type Individu(), il peut s'agir d'un Consultant, d'un Géographe,
