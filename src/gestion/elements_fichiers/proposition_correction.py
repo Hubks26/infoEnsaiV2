@@ -3,7 +3,7 @@ from gestion.elements_fichiers.data_base import Data_Base
 from gestion.elements_fichiers.pays import Pays
 
 class Proposition_Correction(Elm_Fichier):
-	"""Cette classe est utilisé pour comparer l'ancienne proposition et la nouvelle 
+	"""Cette classe est utilisée pour comparer l'ancienne proposition et la nouvelle 
 	proposition pour une modification."""
 	
 	def __init__(self, txt_prop, num_pays, chemin_prop):
