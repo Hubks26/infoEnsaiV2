@@ -29,7 +29,7 @@ class Geographe(Contributeur):
 				if self.verification_connexion():
 					while True:
 						txt_correction = input('\nEntrez le nouveau texte :\n> ')
-						if len(txt_correction) > 1:
+						if len(txt_correction) >= 1:
 							break
 						print('\nVotre texte doit contenir au moins 1 caractère\n')
 						
@@ -51,8 +51,8 @@ class Geographe(Contributeur):
 		if self.verification_connexion():
 			while True:
 				texte = input('\nEntrez le texte à ajouter :\n> ')
-				if len(texte) <= 1:
-					input('\nLe nom de la section doit contenir au moins 1 caractère.\nAppuyez sur entrer pour continuer.')
+				if len(texte) < 1:
+					input('\nLe texte doit contenir au moins 1 caractère.\nAppuyez sur entrer pour continuer.')
 					continue
 				break
 			
@@ -76,7 +76,7 @@ class Geographe(Contributeur):
 		if self.verification_connexion():
 			while True:
 				nom_section = input('\nEntrez le nom de la nouvelle section :\n> ')
-				if len(nom_section) <= 1 or len(nom_section) > 50:
+				if len(nom_section) < 1 or len(nom_section) > 50:
 					input('\nLe nom de la section doit contenir entre 1 et 50 caractères.\nAppuyez sur entrer pour continuer.')
 					continue
 				if nom_section in noms_indisponibles:
