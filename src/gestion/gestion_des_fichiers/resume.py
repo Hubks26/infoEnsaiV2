@@ -9,9 +9,9 @@ class Resume(Afficheur):
 	"""La classe Resume permet de renvoyer des data frames"""
 	
 	def table_criteres(self, liste_pays_a_afficher):
-		"""Cette méthode permet de créer un data frame sur les pays choisi au préalable
-		par la méthode critère_usuels avec l'aide de la bibliothèque pandas.
-		Valeurs_pays est un tableau qui prend toutes les informations chiffrés des différents pays. """
+		"""Cette méthode permet de créer un data frame sur les pays choisis au préalable
+		par la méthode critère_usuels à l'aide de la bibliothèque pandas.
+		Valeurs_pays est un tableau qui prend toutes les informations chiffrées des différents pays. """
 		
 		noms_pays = [self.simplification(pays.get_name()) for pays in liste_pays_a_afficher]
 		
@@ -76,7 +76,7 @@ class Resume(Afficheur):
 		return (len(pays_sup_seuil), tableau_pays_sup, len(pays_inf_seuil), tableau_pays_inf) 
 
 	def tableau_classes_age(self, liste_pays_a_afficher):
-		"""Cette méthode renvoie un data frame concernant les différentes classes d'ages
+		"""Cette méthode renvoie un data frame concernant les différentes classes d'âges
 		en prenant en compte les pays choisis au préalable."""
 		
 		noms_pays = [self.simplification(pays.get_name()) for pays in liste_pays_a_afficher]
@@ -92,7 +92,7 @@ class Resume(Afficheur):
 		return pandas.DataFrame(valeurs_classes_age, index = criteres, columns = noms_pays)
 	
 	def somme(self):
-		"""Cette méthode renvoie un data frame à une colonne. Elle fait la somme
+		"""Cette méthode renvoie un data frame d'une colonne. Elle fait la somme
 		des différents critères sur les pays."""
 		
 		donnees = Data_Base().donnees
@@ -138,7 +138,7 @@ class Resume(Afficheur):
 		"""Cette méthode utilise la méthode des Kmeans pour permettre à la fonction de créer des classes entre les pays.
 		Elle prend en argument le nombre de classes que l'utilisateur veut former.
 		Cette méthode renvoie un data frame où chaque colonne correspond à chaque classe 
-		avec le noms des pays dans celles ci."""
+		avec le nom des pays dans celles ci."""
 		
 		donnees = Data_Base().donnees
 		
