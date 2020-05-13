@@ -147,7 +147,7 @@ class Data_Scientist(Contributeur):
 			seuil = print("Entrez le seuil (en %) que vous voulez :\n")
 		if critere == 'dette':
 			seuil = print("Entrez le seuil (en %) que vous voulez :\n")
-		if critere in ['dépenses santé', 'dépenses education', 'dépenses militaires']:
+		if critere in ['dépenses santé', 'dépenses éducation', 'dépenses militaires']:
 			seuil = print("Entrez le seuil (en % of GDP) que vous voulez :\n")
 	
 		while True:
