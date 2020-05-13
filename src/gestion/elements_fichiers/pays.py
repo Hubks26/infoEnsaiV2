@@ -96,7 +96,7 @@ class Pays(Section):
 		return depenses_education
 
 	def get_depenses_militaires(self):
-		"""Cette méthode renvoie les dépenses d'un pays dans le domaine militaire"""
+		"""Cette méthode renvoie les dépenses d'un pays dans le secteur militaire"""
 		
 		try:
 			depenses_militaires = self.contenu['Military and Security']['Military expenditures']['text']
@@ -105,7 +105,7 @@ class Pays(Section):
 		return depenses_militaires
 	
 	def get_classe_age1(self):
-		"""Cette methode permet de regrouper les individus d'un age entre 0 et 14 ans"""
+		"""Cette methode permet de regrouper les individus d'un âge entre 0 et 14 ans"""
 		
 		try:
 			depenses_sante = self.contenu['People and Society']['Age structure']["0-14 years"]["text"]
@@ -114,7 +114,7 @@ class Pays(Section):
 		return depenses_sante
 	
 	def get_classe_age2(self):
-		"""Cette methode permet de regrouper les individus d'un age entre 15 et 24 ans"""
+		"""Cette methode permet de regrouper les individus d'un âge entre 15 et 24 ans"""
 		
 		try:
 			depenses_sante = self.contenu['People and Society']['Age structure']["15-24 years"]["text"]
@@ -123,7 +123,7 @@ class Pays(Section):
 		return depenses_sante
 	
 	def get_classe_age3(self):
-		"""Cette methode permet de regrouper les individus d'un age entre 25 et 54 ans"""
+		"""Cette methode permet de regrouper les individus d'un âge entre 25 et 54 ans"""
 		
 		try:
 			depenses_sante = self.contenu['People and Society']['Age structure']["25-54 years"]["text"]
@@ -132,7 +132,7 @@ class Pays(Section):
 		return depenses_sante
 	
 	def get_classe_age4(self):
-		"""Cette methode permet de regrouper les individus d'un age entre 55 et 64 ans"""
+		"""Cette methode permet de regrouper les individus d'un âge entre 55 et 64 ans"""
 		
 		try:
 			depenses_sante = self.contenu['People and Society']['Age structure']["55-64 years"]["text"]
@@ -141,7 +141,7 @@ class Pays(Section):
 		return depenses_sante
 	
 	def get_classe_age5(self):
-		"""Cette methode permet de regrouper les individus d'un age entre 65 ans et +"""
+		"""Cette methode permet de regrouper les individus d'un âge entre 65 ans et plus"""
 		
 		try:
 			depenses_sante = self.contenu['People and Society']['Age structure']["65 years and over"]["text"]
@@ -235,7 +235,7 @@ class Pays(Section):
 			self.contenu['Economy'] = {'Unemployment rate' : {'text' : chomage+'%'}}
 		
 	def set_depenses_sante(self, depenses_sante):
-		"""Cette méthode permet de modifier les depenses de santé d'un pays dans la base de données"""
+		"""Cette méthode permet de modifier les dépenses dans le secteur de la santé d'un pays dans la base de données"""
 		
 		if 'People and Society' in self.contenu:
 			self.contenu['People and Society']['Health expenditures'] = {'text' : depenses_sante+'% of GDP'}
@@ -243,7 +243,7 @@ class Pays(Section):
 			self.contenu['People and Society'] = {'Health expenditures' : {'text' : depenses_sante+'% of GDP'}}
 		
 	def set_depenses_education(self, depenses_education):
-		"""Cette méthode permet de modifier les depenses dans l'éducation d'un pays dans la base de données"""
+		"""Cette méthode permet de modifier les dépenses dans l'éducation d'un pays dans la base de données"""
 		
 		if 'People and Society' in self.contenu:
 			self.contenu['People and Society']['Education expenditures'] = {'text' : depenses_education+'% of GDP'}
@@ -251,13 +251,13 @@ class Pays(Section):
 			self.contenu['People and Society'] = {'Education expenditures' : {'text' : depenses_education+'% of GDP'}}
 		
 	def set_depenses_militaires(self, depenses_militaires):
-		"""Cette méthode permet de modifier les depenses dans le domaine militaire d'un pays dans la base de données"""
+		"""Cette méthode permet de modifier les dépenses dans le secteur militaire d'un pays dans la base de données"""
 		
 		self.contenu.update({'Military and Security' : {'Military expenditures' : {'text' : depenses_militaires+'% of GDP'}}})
 
 	def set_infos_de_base(self):
-		"""Cette méthode permet d'ajouter des informations de base sur un pays, ie le nom du pays, la superficie,
-		sa population, sa croissance démographique, l'inflation, la dette, le chômage et les depenses"""
+		"""Cette méthode permet d'ajouter des informations de base sur un pays, c'est-à-dire le nom du pays, 
+		la superficie, sa population, sa croissance démographique, l'inflation, la dette, le chômage et les dépenses"""
 		
 		ajout_infos = input('\nVoulez vous ajouter des informations de base sur le pays (O/N) ?\n> ')
 		if ajout_infos in ["o","O"]:
