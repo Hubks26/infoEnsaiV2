@@ -10,13 +10,13 @@ from gestion.gestion_des_fichiers.gestionnaire import Gestionnaire
 class Admin(Geographe, Data_Scientist):
 	"""Classe de l'administrateur"""
 	def __init__(self):
-		"""son staut est la letre 'a'"""
+		"""son statut est la lettre 'a'"""
 		super().__init__()
 		self.statut = 'a'
 		
 	def gestion_compte(self, contenu):
-		"""Cette méthode permet d'acceder aux tâches Suppression/Création d'un compte employeur.
-		Elle renvoie les différentes tâches que peut eeffectuer l'administrateur :
+		"""Cette méthode permet d'accéder aux tâches Suppression/Création d'un compte employeur.
+		Elle renvoie les différentes tâches que peut effectuer l'administrateur :
 		 - Créer un compte
 		 - Supprimer un compte
 		 - Voir la liste des comptes"""
@@ -41,7 +41,7 @@ class Admin(Geographe, Data_Scientist):
 	def _creer_compte(self, contenu):
 		"""Cette méthode permet à l'administrateur de créer un nouveau compte.
 		D'abord, il doit choisir le statut du nouveau acteur. Ensuite son pseudo et enfin son mot de passe.
-		Une fois validé, le nouveau compte sera insérer dans le gestionnaire des comptes."""
+		Une fois validé, le nouveau compte sera inséré dans le gestionnaire des comptes."""
 		
 		gestionnaire = Gestionnaire()
 		liste_des_comptes = gestionnaire.read(Compte().get_chemin_fichier())
@@ -103,7 +103,7 @@ class Admin(Geographe, Data_Scientist):
 		return Menu_Ouvert(contenu)
 	
 	def _afficher_liste_des_comptes(self, contenu):
-		"""Cette méthode permet d'afficher la liste des différents comptes qu'il y a dans le gestionnaire"""
+		"""Cette méthode permet d'afficher la liste des différents comptes présents dans le gestionnaire"""
 		
 		gestionnaire = Gestionnaire()
 		liste_des_comptes = gestionnaire.read(Compte().get_chemin_fichier())
@@ -147,7 +147,7 @@ class Admin(Geographe, Data_Scientist):
 	
 	def supprimer_pays(self, contenu):
 		"""La méthode supprimer_pays permet de supprimer toutes les données d'un pays, y compris les informations 
-		contenu dans les différentes sections."""
+		contenues dans les différentes sections."""
 		
 		gestionnaire = Gestionnaire()
 		donnees = Data_Base().donnees
