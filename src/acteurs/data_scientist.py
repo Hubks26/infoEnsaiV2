@@ -9,7 +9,7 @@ class Data_Scientist(Contributeur):
 	"""Cette classe correspond au Data Scientist"""
 	
 	def __init__(self):
-		"""Son statut est la lettre 'c'"""
+		"""Son statut est la lettre 'd'"""
 		
 		super().__init__()
 		self.statut = 'd'
