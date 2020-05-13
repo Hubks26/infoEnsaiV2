@@ -130,8 +130,8 @@ class Geographe(Contributeur):
 		return self.afficher_pays(contenu)
 	
 	def gestion_corrections(self, contenu):
-		"""La gestion des coorections se fait par cette méthode. Elle affiche les
-		différentes propositions que les autres acteurs ont suggéré. Le géographe n'a plus qu'à 
+		"""La gestion des corrections se fait par cette méthode. Elle affiche les
+		différentes propositions que les autres acteurs ont suggérés. Le géographe n'a plus qu'à 
 		choisir quelle correction il veut observer"""
 		
 		gestionnaire = Gestionnaire()
@@ -191,7 +191,7 @@ class Geographe(Contributeur):
 		return self.gestion_corrections(contenu)
 			
 	def _refuser_prop(self, prop_cor):
-		"""méthode qui effectue la suppression de la proposition de correction avec une double confirmation"""
+		"""Méthode qui effectue la suppression de la proposition de correction avec une double confirmation"""
 		
 		gestionnaire = Gestionnaire()
 		confirmation = input("\nConfirmation du refus de la proposition (O/N) ? #Cela supprimera la proposition#\n> ")
