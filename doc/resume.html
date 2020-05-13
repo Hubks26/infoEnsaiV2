@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module resume</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>resume</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cadrie%5Cdownloads%5Cinfoensaiv2-master%5Csrc%5Cresume.py">c:\users\adrie\downloads\infoensaiv2-master\src\resume.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="afficheur.html#Afficheur">afficheur.Afficheur</a>(<a href="lecteur.html#Lecteur">lecteur.Lecteur</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="resume.html#Resume">Resume</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Resume">class <strong>Resume</strong></a>(<a href="afficheur.html#Afficheur">afficheur.Afficheur</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>La&nbsp;classe&nbsp;<a href="#Resume">Resume</a>&nbsp;permet&nbsp;de&nbsp;renvoyer&nbsp;des&nbsp;data&nbsp;frames<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="resume.html#Resume">Resume</a></dd>
+<dd><a href="afficheur.html#Afficheur">afficheur.Afficheur</a></dd>
+<dd><a href="lecteur.html#Lecteur">lecteur.Lecteur</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Resume-clustering"><strong>clustering</strong></a>(self, nb_clusters)</dt><dd><tt>Cette&nbsp;méthode&nbsp;utilise&nbsp;la&nbsp;méthode&nbsp;des&nbsp;Kmeans&nbsp;pour&nbsp;permettre&nbsp;à&nbsp;la&nbsp;fonction&nbsp;de&nbsp;créer&nbsp;des&nbsp;classes&nbsp;entre&nbsp;les&nbsp;pays.<br>
+Elle&nbsp;prend&nbsp;en&nbsp;argument&nbsp;le&nbsp;nombre&nbsp;de&nbsp;classes&nbsp;que&nbsp;l'utilisateur&nbsp;veut&nbsp;former.<br>
+Cette&nbsp;méthode&nbsp;renvoie&nbsp;un&nbsp;data&nbsp;frame&nbsp;où&nbsp;chaque&nbsp;colonne&nbsp;correspond&nbsp;à&nbsp;chaque&nbsp;classe&nbsp;<br>
+avec&nbsp;le&nbsp;nom&nbsp;des&nbsp;pays&nbsp;dans&nbsp;celles&nbsp;ci.</tt></dd></dl>
+
+<dl><dt><a name="Resume-somme"><strong>somme</strong></a>(self)</dt><dd><tt>Cette&nbsp;méthode&nbsp;renvoie&nbsp;un&nbsp;data&nbsp;frame&nbsp;d'une&nbsp;colonne.&nbsp;Elle&nbsp;fait&nbsp;la&nbsp;somme<br>
+des&nbsp;différents&nbsp;critères&nbsp;sur&nbsp;les&nbsp;pays.</tt></dd></dl>
+
+<dl><dt><a name="Resume-summary"><strong>summary</strong></a>(self)</dt><dd><tt>La&nbsp;méthode&nbsp;summary&nbsp;renvoie&nbsp;un&nbsp;data&nbsp;frame&nbsp;donnant&nbsp;des&nbsp;statistiques&nbsp;sur&nbsp;les&nbsp;différents&nbsp;critères&nbsp;(nombres&nbsp;de&nbsp;valeurs,&nbsp;moyenne,&nbsp;écart-type,&nbsp;...)<br>
+mais&nbsp;uniquement&nbsp;sur&nbsp;les&nbsp;colonnes&nbsp;numériques.&nbsp;Pour&nbsp;cela,&nbsp;la&nbsp;méthode&nbsp;crée&nbsp;un&nbsp;dictionnaire&nbsp;où&nbsp;chaque&nbsp;clé&nbsp;correspond&nbsp;à&nbsp;un&nbsp;critère<br>
+que&nbsp;l'on&nbsp;associe&nbsp;à&nbsp;un&nbsp;data&nbsp;frame.&nbsp;Enfin,&nbsp;on&nbsp;utilise&nbsp;la&nbsp;méthode&nbsp;describe&nbsp;de&nbsp;pandas&nbsp;pour&nbsp;avoir&nbsp;notre&nbsp;résumé&nbsp;statistique.</tt></dd></dl>
+
+<dl><dt><a name="Resume-sup_inf_seuil"><strong>sup_inf_seuil</strong></a>(self, critere, seuil)</dt><dd><tt>Cette&nbsp;méthode&nbsp;crée&nbsp;deux&nbsp;tableaux.&nbsp;Elle&nbsp;prend&nbsp;en&nbsp;argument&nbsp;un&nbsp;critère&nbsp;et&nbsp;un&nbsp;seuil.<br>
+La&nbsp;premier&nbsp;tableau&nbsp;correspond&nbsp;aux&nbsp;pays&nbsp;dépassant&nbsp;le&nbsp;seuil&nbsp;déterminé&nbsp;par&nbsp;l'utilisateur.<br>
+Le&nbsp;second&nbsp;correspond&nbsp;aux&nbsp;pays&nbsp;sous&nbsp;ce&nbsp;seuil.&nbsp;Elle&nbsp;renvoie&nbsp;4&nbsp;informations&nbsp;:<br>
+le&nbsp;nombre&nbsp;de&nbsp;pays&nbsp;dépassant&nbsp;le&nbsp;seuil&nbsp;avec&nbsp;le&nbsp;tableau&nbsp;des&nbsp;pays&nbsp;correspondant&nbsp;avec&nbsp;les&nbsp;valeurs&nbsp;de&nbsp;ce&nbsp;critère,&nbsp;<br>
+et&nbsp;le&nbsp;nombre&nbsp;de&nbsp;pays&nbsp;ne&nbsp;dépassant&nbsp;pas&nbsp;le&nbsp;seuil&nbsp;avec&nbsp;le&nbsp;tableau&nbsp;des&nbsp;pays&nbsp;correspondant&nbsp;avec&nbsp;les&nbsp;valeurs&nbsp;de&nbsp;ce&nbsp;critère</tt></dd></dl>
+
+<dl><dt><a name="Resume-table_criteres"><strong>table_criteres</strong></a>(self, liste_pays_a_afficher)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;de&nbsp;créer&nbsp;un&nbsp;data&nbsp;frame&nbsp;sur&nbsp;les&nbsp;pays&nbsp;choisis&nbsp;au&nbsp;préalable<br>
+par&nbsp;la&nbsp;méthode&nbsp;critère_usuels&nbsp;à&nbsp;l'aide&nbsp;de&nbsp;la&nbsp;bibliothèque&nbsp;pandas.<br>
+Valeurs_pays&nbsp;est&nbsp;un&nbsp;tableau&nbsp;qui&nbsp;prend&nbsp;toutes&nbsp;les&nbsp;informations&nbsp;chiffrées&nbsp;des&nbsp;différents&nbsp;pays.</tt></dd></dl>
+
+<dl><dt><a name="Resume-tableau_classes_age"><strong>tableau_classes_age</strong></a>(self, liste_pays_a_afficher)</dt><dd><tt>Cette&nbsp;méthode&nbsp;renvoie&nbsp;un&nbsp;data&nbsp;frame&nbsp;concernant&nbsp;les&nbsp;différentes&nbsp;classes&nbsp;d'âges<br>
+en&nbsp;prenant&nbsp;en&nbsp;compte&nbsp;les&nbsp;pays&nbsp;choisis&nbsp;au&nbsp;préalable.</tt></dd></dl>
+
+<dl><dt><a name="Resume-top_and_flop"><strong>top_and_flop</strong></a>(self, critere, taille_classement)</dt><dd><tt>Cette&nbsp;méthode&nbsp;renvoie&nbsp;deux&nbsp;data&nbsp;frames.<br>
+Le&nbsp;premier&nbsp;correspond&nbsp;aux&nbsp;'taille_classement'(entier)&nbsp;premiers&nbsp;pays&nbsp;selon&nbsp;un&nbsp;certain&nbsp;critère.<br>
+Le&nbsp;second&nbsp;data&nbsp;frame&nbsp;correspond&nbsp;aux&nbsp;'taille_classement'(entier)&nbsp;dernier&nbsp;pays&nbsp;selon&nbsp;un&nbsp;certain&nbsp;critère.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="afficheur.html#Afficheur">afficheur.Afficheur</a>:<br>
+<dl><dt><a name="Resume-liste_triee_selon_critere"><strong>liste_triee_selon_critere</strong></a>(self, donnees, critere)</dt><dd><tt>Cette&nbsp;méthode&nbsp;a&nbsp;besoin&nbsp;d'un&nbsp;jeu&nbsp;de&nbsp;données&nbsp;et&nbsp;d'un&nbsp;critère.&nbsp;Elle&nbsp;renvoie&nbsp;une&nbsp;liste&nbsp;triée&nbsp;selon<br>
+un&nbsp;critère&nbsp;choisi&nbsp;par&nbsp;le&nbsp;data&nbsp;scientist.</tt></dd></dl>
+
+<dl><dt><a name="Resume-numerisation_critere"><strong>numerisation_critere</strong></a>(self, pays, critere)</dt><dd><tt>Cette&nbsp;méthode&nbsp;rend&nbsp;plus&nbsp;lisible&nbsp;certains&nbsp;nombres.<br>
+Elle&nbsp;permet&nbsp;aussi&nbsp;de&nbsp;supprimer&nbsp;le&nbsp;texte&nbsp;afin&nbsp;d'obtenir&nbsp;uniquement&nbsp;un&nbsp;résultat&nbsp;numérique<br>
+afin&nbsp;de&nbsp;pouvoir&nbsp;s'en&nbsp;servir&nbsp;dans&nbsp;les&nbsp;différentes&nbsp;tâches&nbsp;du&nbsp;data&nbsp;scientist</tt></dd></dl>
+
+<dl><dt><a name="Resume-simplification"><strong>simplification</strong></a>(self, txt)</dt><dd><tt>cette&nbsp;méthode&nbsp;permet&nbsp;de&nbsp;simplifier&nbsp;le&nbsp;texte&nbsp;en&nbsp;question&nbsp;afin&nbsp;de&nbsp;ne&nbsp;pas&nbsp;afficher&nbsp;tout&nbsp;le&nbsp;texte<br>
+dans&nbsp;le&nbsp;tableau&nbsp;du&nbsp;résumé&nbsp;d'informations</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="lecteur.html#Lecteur">lecteur.Lecteur</a>:<br>
+<dl><dt><a name="Resume-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Resume-read"><strong>read</strong></a>(self, chemin_du_fichier)</dt><dd><tt>Permet&nbsp;de&nbsp;lire&nbsp;le&nbsp;contenu&nbsp;du&nbsp;fichier</tt></dd></dl>
+
+<dl><dt><a name="Resume-write"><strong>write</strong></a>(self, chemin_du_fichier, contenu)</dt><dd><tt>Permet&nbsp;d'écrire&nbsp;du&nbsp;contenu&nbsp;dans&nbsp;le&nbsp;fichier</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="lecteur.html#Lecteur">lecteur.Lecteur</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

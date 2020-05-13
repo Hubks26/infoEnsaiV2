@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>admin</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cadrie%5Cdownloads%5Cinfoensaiv2-master%5Csrc%5Cadmin.py">c:\users\adrie\downloads\infoensaiv2-master\src\admin.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="getpass.html">getpass</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="data_scientist.html#Data_Scientist">data_scientist.Data_Scientist</a>(<a href="contributeur.html#Contributeur">contributeur.Contributeur</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin.html#Admin">Admin</a>(<a href="geographe.html#Geographe">geographe.Geographe</a>, <a href="data_scientist.html#Data_Scientist">data_scientist.Data_Scientist</a>)
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="geographe.html#Geographe">geographe.Geographe</a>(<a href="contributeur.html#Contributeur">contributeur.Contributeur</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="admin.html#Admin">Admin</a>(<a href="geographe.html#Geographe">geographe.Geographe</a>, <a href="data_scientist.html#Data_Scientist">data_scientist.Data_Scientist</a>)
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Admin">class <strong>Admin</strong></a>(<a href="geographe.html#Geographe">geographe.Geographe</a>, <a href="data_scientist.html#Data_Scientist">data_scientist.Data_Scientist</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Classe&nbsp;de&nbsp;l'administrateur<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="admin.html#Admin">Admin</a></dd>
+<dd><a href="geographe.html#Geographe">geographe.Geographe</a></dd>
+<dd><a href="data_scientist.html#Data_Scientist">data_scientist.Data_Scientist</a></dd>
+<dd><a href="contributeur.html#Contributeur">contributeur.Contributeur</a></dd>
+<dd><a href="consultant.html#Consultant">consultant.Consultant</a></dd>
+<dd><a href="individu.html#Individu">individu.Individu</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Admin-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>son&nbsp;statut&nbsp;est&nbsp;la&nbsp;lettre&nbsp;'a'</tt></dd></dl>
+
+<dl><dt><a name="Admin-gestion_compte"><strong>gestion_compte</strong></a>(self, contenu)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;d'accéder&nbsp;aux&nbsp;tâches&nbsp;Suppression/Création&nbsp;d'un&nbsp;compte&nbsp;employeur.<br>
+Elle&nbsp;renvoie&nbsp;les&nbsp;différentes&nbsp;tâches&nbsp;que&nbsp;peut&nbsp;effectuer&nbsp;l'administrateur&nbsp;:<br>
+&nbsp;-&nbsp;Créer&nbsp;un&nbsp;compte<br>
+&nbsp;-&nbsp;Supprimer&nbsp;un&nbsp;compte<br>
+&nbsp;-&nbsp;Voir&nbsp;la&nbsp;liste&nbsp;des&nbsp;comptes</tt></dd></dl>
+
+<dl><dt><a name="Admin-supprimer_pays"><strong>supprimer_pays</strong></a>(self, contenu)</dt><dd><tt>La&nbsp;méthode&nbsp;supprimer_pays&nbsp;permet&nbsp;de&nbsp;supprimer&nbsp;toutes&nbsp;les&nbsp;données&nbsp;d'un&nbsp;pays,&nbsp;y&nbsp;compris&nbsp;les&nbsp;informations&nbsp;<br>
+contenues&nbsp;dans&nbsp;les&nbsp;différentes&nbsp;sections.</tt></dd></dl>
+
+<dl><dt><a name="Admin-supprimer_section"><strong>supprimer_section</strong></a>(self, contenu, section)</dt><dd><tt>Contrairement&nbsp;au&nbsp;géographe,&nbsp;l'administrateur&nbsp;est&nbsp;le&nbsp;seul&nbsp;à&nbsp;pouvoir&nbsp;supprimer&nbsp;un&nbsp;pays&nbsp;ou&nbsp;une&nbsp;section.<br>
+Ici,&nbsp;cette&nbsp;méthode&nbsp;permet&nbsp;de&nbsp;supprimer&nbsp;une&nbsp;section&nbsp;d'un&nbsp;pays&nbsp;en&nbsp;question.<br>
+Cependant,&nbsp;il&nbsp;ne&nbsp;peut&nbsp;pas&nbsp;supprimer&nbsp;certaines&nbsp;sections&nbsp;comme&nbsp;'Government'&nbsp;ou&nbsp;'Country&nbsp;name'&nbsp;car&nbsp;ils&nbsp;contiennent<br>
+la&nbsp;liste&nbsp;des&nbsp;noms&nbsp;des&nbsp;pays.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="geographe.html#Geographe">geographe.Geographe</a>:<br>
+<dl><dt><a name="Admin-ajout_pays"><strong>ajout_pays</strong></a>(self, contenu)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;d'ajouter&nbsp;un&nbsp;pays&nbsp;comme&nbsp;la&nbsp;précédente&nbsp;méthode&nbsp;ajout_section</tt></dd></dl>
+
+<dl><dt><a name="Admin-ajout_section"><strong>ajout_section</strong></a>(self, contenu, section)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;de&nbsp;créer&nbsp;une&nbsp;nouvelle&nbsp;section&nbsp;dans&nbsp;un&nbsp;pays</tt></dd></dl>
+
+<dl><dt><a name="Admin-ajout_texte"><strong>ajout_texte</strong></a>(self, contenu, section)</dt><dd><tt>La&nbsp;méthode&nbsp;ajout_texte&nbsp;permet&nbsp;d'ajouter&nbsp;un&nbsp;texte&nbsp;à&nbsp;une&nbsp;section&nbsp;donnée</tt></dd></dl>
+
+<dl><dt><a name="Admin-correction"><strong>correction</strong></a>(self, contenu, section_de_texte)</dt><dd><tt>La&nbsp;méthode&nbsp;correction&nbsp;prend&nbsp;en&nbsp;compte&nbsp;un&nbsp;contenu&nbsp;de&nbsp;menu&nbsp;et&nbsp;un&nbsp;texte.<br>
+Elle&nbsp;permet&nbsp;la&nbsp;modification&nbsp;d'une&nbsp;information&nbsp;par&nbsp;un&nbsp;nouveau&nbsp;texte.</tt></dd></dl>
+
+<dl><dt><a name="Admin-gestion_corrections"><strong>gestion_corrections</strong></a>(self, contenu)</dt><dd><tt>La&nbsp;gestion&nbsp;des&nbsp;corrections&nbsp;se&nbsp;fait&nbsp;par&nbsp;cette&nbsp;méthode.&nbsp;Elle&nbsp;affiche&nbsp;les<br>
+différentes&nbsp;propositions&nbsp;que&nbsp;les&nbsp;autres&nbsp;acteurs&nbsp;ont&nbsp;suggérés.&nbsp;Le&nbsp;géographe&nbsp;n'a&nbsp;plus&nbsp;qu'à&nbsp;<br>
+choisir&nbsp;quelle&nbsp;correction&nbsp;il&nbsp;veut&nbsp;observer</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="data_scientist.html#Data_Scientist">data_scientist.Data_Scientist</a>:<br>
+<dl><dt><a name="Admin-box_plot"><strong>box_plot</strong></a>(self, contenu)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;de&nbsp;renvoyer&nbsp;les&nbsp;boîtes&nbsp;à&nbsp;moustaches</tt></dd></dl>
+
+<dl><dt><a name="Admin-classes_age"><strong>classes_age</strong></a>(self, contenu, liste_pays_a_afficher=[])</dt><dd><tt>Afficher&nbsp;le&nbsp;tableau&nbsp;des&nbsp;classes&nbsp;d'âge&nbsp;pour&nbsp;certains&nbsp;pays</tt></dd></dl>
+
+<dl><dt><a name="Admin-criteres_usuels"><strong>criteres_usuels</strong></a>(self, contenu, liste_pays_a_afficher=[])</dt><dd><tt>Cette&nbsp;fonction&nbsp;permet&nbsp;au&nbsp;data&nbsp;scientist&nbsp;d'avoir&nbsp;le&nbsp;choix&nbsp;entre&nbsp;ajouter&nbsp;un&nbsp;pays,&nbsp;supprimer&nbsp;un&nbsp;pays&nbsp;d'une<br>
+liste&nbsp;ou&nbsp;bien&nbsp;de&nbsp;faire&nbsp;un&nbsp;résumé&nbsp;d'informations&nbsp;de&nbsp;cette&nbsp;même&nbsp;liste.</tt></dd></dl>
+
+<dl><dt><a name="Admin-diag_barres"><strong>diag_barres</strong></a>(self, contenu, critere=None)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;de&nbsp;retourner&nbsp;le&nbsp;diagramme&nbsp;en&nbsp;barres&nbsp;selon&nbsp;un&nbsp;critère</tt></dd></dl>
+
+<dl><dt><a name="Admin-profils_pays"><strong>profils_pays</strong></a>(self, contenu)</dt><dd><tt>Afficher&nbsp;les&nbsp;différents&nbsp;profils&nbsp;de&nbsp;pays</tt></dd></dl>
+
+<dl><dt><a name="Admin-representation_graphique"><strong>representation_graphique</strong></a>(self, contenu)</dt><dd><tt>Cette&nbsp;méthode&nbsp;fonctionne&nbsp;de&nbsp;la&nbsp;même&nbsp;façon&nbsp;que&nbsp;la&nbsp;méthode&nbsp;resume_stat.<br>
+Le&nbsp;data&nbsp;scientist&nbsp;a&nbsp;le&nbsp;choix&nbsp;d'afficher&nbsp;un&nbsp;diagramme&nbsp;en&nbsp;barres&nbsp;ou&nbsp;une&nbsp;boîte&nbsp;à&nbsp;moustache.</tt></dd></dl>
+
+<dl><dt><a name="Admin-resume_seuil"><strong>resume_seuil</strong></a>(self, contenu, critere=None)</dt><dd><tt>Afficher&nbsp;les&nbsp;pays&nbsp;dont&nbsp;un&nbsp;critère&nbsp;dépasse&nbsp;un&nbsp;certain&nbsp;seuil</tt></dd></dl>
+
+<dl><dt><a name="Admin-resume_stat"><strong>resume_stat</strong></a>(self, contenu)</dt><dd><tt>Cette&nbsp;méthode&nbsp;est&nbsp;la&nbsp;tâche&nbsp;résumé&nbsp;d'informations.&nbsp;Elle&nbsp;affiche&nbsp;plusieurs&nbsp;tâches&nbsp;que&nbsp;peut&nbsp;effectuer<br>
+le&nbsp;data&nbsp;scientist&nbsp;et&nbsp;renverra&nbsp;le&nbsp;résultat&nbsp;par&nbsp;la&nbsp;méthode&nbsp;correspondante&nbsp;au&nbsp;choix&nbsp;de&nbsp;la&nbsp;tâche.<br>
+Elle&nbsp;prend&nbsp;en&nbsp;compte&nbsp;le&nbsp;contenu&nbsp;selon&nbsp;ce&nbsp;que&nbsp;souhaite&nbsp;l'administrateur.</tt></dd></dl>
+
+<dl><dt><a name="Admin-somme"><strong>somme</strong></a>(self, contenu, critere=None)</dt><dd><tt>Afficher&nbsp;la&nbsp;somme&nbsp;des&nbsp;critères&nbsp;cumulables</tt></dd></dl>
+
+<dl><dt><a name="Admin-summary"><strong>summary</strong></a>(self, contenu, critere=None)</dt><dd><tt>Afficher&nbsp;le&nbsp;summary&nbsp;d'un&nbsp;critère</tt></dd></dl>
+
+<dl><dt><a name="Admin-top_flop"><strong>top_flop</strong></a>(self, contenu, critere=None)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;d'afficher&nbsp;les&nbsp;premiers&nbsp;et&nbsp;les&nbsp;derniers&nbsp;pays&nbsp;selon&nbsp;un&nbsp;certain&nbsp;critère.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="contributeur.html#Contributeur">contributeur.Contributeur</a>:<br>
+<dl><dt><a name="Admin-se_connecter"><strong>se_connecter</strong></a>(self, contenu)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;à&nbsp;l'acteur&nbsp;de&nbsp;se&nbsp;connecter.<br>
+L'individu&nbsp;entre&nbsp;son&nbsp;pseudo&nbsp;et&nbsp;son&nbsp;mot&nbsp;de&nbsp;passe.&nbsp;Il&nbsp;sera&nbsp;comparé&nbsp;au&nbsp;<br>
+gestionnaire&nbsp;des&nbsp;comptes.</tt></dd></dl>
+
+<dl><dt><a name="Admin-verification_connexion"><strong>verification_connexion</strong></a>(self)</dt><dd><tt>Méthode&nbsp;qui&nbsp;permet&nbsp;de&nbsp;savoir&nbsp;si&nbsp;l'acteur&nbsp;est&nbsp;connecté&nbsp;ou&nbsp;non.<br>
+S'il&nbsp;ne&nbsp;l'est&nbsp;pas,&nbsp;il&nbsp;renvoie&nbsp;un&nbsp;message&nbsp;d'erreur</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="consultant.html#Consultant">consultant.Consultant</a>:<br>
+<dl><dt><a name="Admin-afficher_pays"><strong>afficher_pays</strong></a>(self, contenu)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;au&nbsp;consultant&nbsp;d'afficher&nbsp;la&nbsp;liste&nbsp;des&nbsp;différents&nbsp;pays<br>
+et&nbsp;d'en&nbsp;choisir&nbsp;un&nbsp;par&nbsp;le&nbsp;nombre&nbsp;correspondant&nbsp;au&nbsp;pays&nbsp;affiché&nbsp;dans&nbsp;le&nbsp;menu</tt></dd></dl>
+
+<dl><dt><a name="Admin-afficher_section"><strong>afficher_section</strong></a>(self, section, contenu)</dt><dd><tt>Cette&nbsp;méthode&nbsp;permet&nbsp;d'afficher&nbsp;les&nbsp;différentes&nbsp;sections&nbsp;d'un&nbsp;pays&nbsp;sélectionné.<br>
+C'est&nbsp;la&nbsp;même&nbsp;démarche&nbsp;que&nbsp;pour&nbsp;la&nbsp;méthode&nbsp;afficher_pays</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="individu.html#Individu">individu.Individu</a>:<br>
+<dl><dt><a name="Admin-quitter"><strong>quitter</strong></a>(self, contenu)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="individu.html#Individu">individu.Individu</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

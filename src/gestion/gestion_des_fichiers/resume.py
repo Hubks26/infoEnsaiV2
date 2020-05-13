@@ -172,5 +172,3 @@ class Resume(Afficheur):
 		liste_des_clusters = ['Cluster {}'.format(i+1) for i in range(nb_clusters)]
 
 		return pandas.DataFrame(pays_dans_clusters, index = liste_des_clusters).T
-		
-		
